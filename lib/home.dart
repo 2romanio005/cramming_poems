@@ -21,7 +21,19 @@ class _Home extends State<Home> {
           ),
         ),
       ),
-      body: Text("test"),
+      body: const Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("выбор стиха"),
+              Text("выбор режима")
+            ],
+          ),
+          Text("text"),
+        ],
+      )
+
     );
   }
 }
