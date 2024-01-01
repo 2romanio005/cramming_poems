@@ -11,3 +11,5 @@ Color ColorMain2 = Color.fromARGB(255, 236, 234, 255);
 Color ColorBackground = ColorMain2;             // задний фон приложения
 Color ColorFont = ColorMain1;                   // шрифта
 Color ColorHeader = ColorMain1;
+
+Color PrimaryColor = ColorMain1;

@@ -1,5 +1,8 @@
+import 'package:cramming_poems/main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:cramming_poems/colors.dart';
+
+import 'Data/poem_data.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -14,14 +17,14 @@ class _Home extends State<Home> {
       appBar: AppBar(
         title: Text(
           //"CRAMMING POEMS",
-          "ЗАУЧИВАНИЕ СТРИХОВ",
+          "ЗАУЧИВАНИЕ СТИХОВ",
           style: TextStyle(
             color: ColorHeader,
             fontSize: 30,
           ),
         ),
       ),
-      body: const Column(
+      body: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,7 +33,7 @@ class _Home extends State<Home> {
               Text("выбор режима")
             ],
           ),
-          Text("text"),
+          MainView(poemData: PoemData("Название", "Автор", "Текст")),
         ],
       )
 
