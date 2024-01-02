@@ -38,6 +38,10 @@ class PoemList{
       original: "без названия",
       title: "",
     ),
+    Poem(
+      original: "днинное оооооочень длинное название",
+      title: "",
+    ),
   ];
 
   int _selectedIndex = 0;   // индекс выбранного стиха
