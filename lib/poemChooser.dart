@@ -22,7 +22,7 @@ class _PoemChooser extends State<PoemChooser> {
           ),
           Expanded(
             child: Container(
-              color: ColorTmpG,
+              color: ColorTmpG,     // TODO сделать нормальный дизайн
               child: ListView.builder(
                   itemCount: poemList.poems.length,
                   itemBuilder: (BuildContext context, int index) {
@@ -34,7 +34,7 @@ class _PoemChooser extends State<PoemChooser> {
                           setState(() {
                             poemList.selectedIndex = index;
                           });
-                          //Navigator.pop(context);
+                          Navigator.pop(context);
                         },
                       ),
                       onLongPress: () async {
@@ -52,26 +52,32 @@ class _PoemChooser extends State<PoemChooser> {
                                     )),
                                 actions: [
                                   ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: Text('Отмена',
-                                          style: TextStyle(
-                                            color: ColorFont,
-                                            fontSize: 20,
-                                          ))),
+                                    child: Text(
+                                      'Отмена',
+                                      style: TextStyle(
+                                        color: ColorFont,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
                                   ElevatedButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          poemList.removePoem(index);
-                                        });
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: Text('Удалить',
-                                          style: TextStyle(
-                                            color: ColorFont,
-                                            fontSize: 20,
-                                          ))),
+                                    child: Text(
+                                      'Удалить',
+                                      style: TextStyle(
+                                        color: ColorFont,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        poemList.removePoemAt(index);
+                                      });
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
                                 ],
                               );
                             });
@@ -81,8 +87,13 @@ class _PoemChooser extends State<PoemChooser> {
             ),
           ),
           IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {},
+            icon: const Icon(Icons.add),
+            onPressed: () {
+              setState(() {
+                poemList.addPoem();
+              });
+              Navigator.pop(context);
+            },
           ),
         ],
       ),
