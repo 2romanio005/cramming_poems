@@ -1,6 +1,8 @@
 import 'package:cramming_poems/main_view.dart';
 import 'package:flutter/material.dart';
+
 import 'package:cramming_poems/colors.dart';
+import 'package:cramming_poems/poemChooser.dart';
 
 import 'Data/poem_data.dart';
 
@@ -24,12 +26,15 @@ class _Home extends State<Home> {
           ),
         ),
       ),
+      drawer: Container(
+        margin: EdgeInsets.fromLTRB(0, 25, 0, 40),
+        child: PoemChooser(),
+      ),
       body: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text("выбор стиха"),
               Text("выбор режима")
             ],
           ),

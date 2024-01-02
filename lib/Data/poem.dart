@@ -26,8 +26,9 @@ class Poem {
   }
 }
 
+// TODO хз может не надо выносить в отдельный файл? вынеси сам если хочешь
 // всё взаимодейстиве со списком стихов
-class PoemList{
+class PoemList {
   List<Poem> _poems = [
     // FIXME это для проверки отображения
     Poem(
@@ -43,23 +44,30 @@ class PoemList{
       title: "",
     ),
   ];
+  int _selectedIndex = 0; // индекс выбранного стиха
 
-  int _selectedIndex = 0;   // индекс выбранного стиха
-
-  List<Poem> get poems{
+  List<Poem> get poems {
     return _poems;
   }
 
-  addPoem(){}
-  removePoem(int index){}
+  addPoem() {
+    poems.add(Poem(original: "", title: "Новый стих ${poems.length}"));
+    selectedIndex = poems.length - 1;
+  }
 
-  set selectedIndex(newIndex){
+  removePoemAt(int index) {
+    selectedIndex -= (index <= selectedIndex) ? 1 : 0;
+    poems.removeAt(index);
+  }
+
+  set selectedIndex(newIndex) {
     // print("новый select: $newIndex");
     _selectedIndex = newIndex;
   }
-  int get selectedIndex{
+
+  int get selectedIndex {
     return _selectedIndex;
   }
 }
-PoemList poemList = PoemList();  // Список всех стихов
 
+PoemList poemList = PoemList(); // Список всех стихов
