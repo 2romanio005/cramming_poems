@@ -6,7 +6,7 @@ class Poem {
   late List<List<String>> _differentTypesOfPoem; // массив где каждый вид стиха хранится построчно [0] - пусть буде оригинал [1] - только первые буквы и т.д
 
   Poem({required String original, required String title}) {
-    // создание различный типов вывода
+    // TODO создание различный типов вывода
     _differentTypesOfPoem = [];
     _differentTypesOfPoem.add([original]);
 
@@ -25,3 +25,37 @@ class Poem {
     return _title;
   }
 }
+
+// всё взаимодейстиве со списком стихов
+class PoemList{
+  List<Poem> _poems = [
+    // FIXME это для проверки отображения
+    Poem(
+      original: "я лучше всех\nвторая строка",
+      title: "название",
+    ),
+    Poem(
+      original: "без названия",
+      title: "",
+    ),
+  ];
+
+  int _selectedIndex = 0;   // индекс выбранного стиха
+
+  List<Poem> get poems{
+    return _poems;
+  }
+
+  addPoem(){}
+  removePoem(int index){}
+
+  set selectedIndex(newIndex){
+    // print("новый select: $newIndex");
+    _selectedIndex = newIndex;
+  }
+  int get selectedIndex{
+    return _selectedIndex;
+  }
+}
+PoemList poemList = PoemList();  // Список всех стихов
+
