@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cramming_poems/colors.dart';
-import 'package:cramming_poems/Data/poem.dart';
+import 'package:cramming_poems/Data/poem_list.dart';
 
 class PoemChooser extends StatefulWidget {
   @override
@@ -90,7 +90,7 @@ class _PoemChooser extends State<PoemChooser> {
             icon: const Icon(Icons.add),
             onPressed: () {
               setState(() {
-                poemList.addPoem();
+                poemList.newPoem();
               });
               Navigator.pop(context);
             },

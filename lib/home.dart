@@ -27,7 +27,7 @@ class _Home extends State<Home> {
         ),
       ),
       drawer: Container(
-        margin: EdgeInsets.fromLTRB(0, 25, 0, 40),
+        margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
         child: PoemChooser(),
       ),
       body: Column(

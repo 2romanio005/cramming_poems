@@ -1,16 +1,12 @@
 // TODO можешь поманять на PoemData если надо, но вроде так красивее
 class Poem {
-  late String _title; // название стиха
-  // TODO выбирай как удобнее
-  //late List<String> _differentTypesOfPoem;        // массив где каждый вид стиха хранится в виде одной строки [0] - пусть буде оригинал [1] - только первые буквы и т.д
-  late List<List<String>> _differentTypesOfPoem; // массив где каждый вид стиха хранится построчно [0] - пусть буде оригинал [1] - только первые буквы и т.д
-
-  Poem({required String original, required String title}) {
+  Poem({required List<String> original, required String title, required int numberInFileName}) {
     // TODO создание различный типов вывода
     _differentTypesOfPoem = [];
-    _differentTypesOfPoem.add([original]);
+    _differentTypesOfPoem.add(original);  // добавили оригинал
 
-    this.title = title; // обязательно после записи  _differentTypesOfPoem
+    this.title = title; // обязательно после записи  _differentTypesOfPoem, т.к может взять первую строку в качестве названия
+    _numberInFileName = numberInFileName;
   }
 
   set title(String newTitle) {
@@ -24,50 +20,16 @@ class Poem {
   String get title {
     return _title;
   }
+
+  int get numberInFileName{
+    return _numberInFileName;
+  }
+
+  List<List<String>> get differentTypesOfPoem{
+    return _differentTypesOfPoem;
+  }
+
+  late int _numberInFileName;
+  late String _title; // название стиха
+  late List<List<String>> _differentTypesOfPoem; // массив типов отобажения стихов где каждый тип стиха хранится построчно [0] - пусть буде оригинал [1] - только первые буквы и т.д
 }
-
-// TODO хз может не надо выносить в отдельный файл? вынеси сам если хочешь
-// всё взаимодейстиве со списком стихов
-class PoemList {
-  List<Poem> _poems = [
-    // FIXME это для проверки отображения
-    Poem(
-      original: "я лучше всех\nвторая строка",
-      title: "название",
-    ),
-    Poem(
-      original: "без названия",
-      title: "",
-    ),
-    Poem(
-      original: "днинное оооооочень длинное название",
-      title: "",
-    ),
-  ];
-  int _selectedIndex = 0; // индекс выбранного стиха
-
-  List<Poem> get poems {
-    return _poems;
-  }
-
-  addPoem() {
-    poems.add(Poem(original: "", title: "Новый стих ${poems.length}"));
-    selectedIndex = poems.length - 1;
-  }
-
-  removePoemAt(int index) {
-    selectedIndex -= (index <= selectedIndex) ? 1 : 0;
-    poems.removeAt(index);
-  }
-
-  set selectedIndex(newIndex) {
-    // print("новый select: $newIndex");
-    _selectedIndex = newIndex;
-  }
-
-  int get selectedIndex {
-    return _selectedIndex;
-  }
-}
-
-PoemList poemList = PoemList(); // Список всех стихов

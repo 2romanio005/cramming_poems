@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cramming_poems/home.dart';
+import 'package:cramming_poems/future_builder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'colors.dart';
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(),
+      home: const FutureBuilderHome(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: PrimaryColor,
@@ -33,7 +33,6 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-
     );
   }
 }
