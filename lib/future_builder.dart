@@ -11,8 +11,10 @@ class FutureBuilderHome extends StatefulWidget {
 
 
 class _FutureBuilderHome extends State<FutureBuilderHome> {
-  Future<void> _loading () async{
+  Future<bool> _loading () async{
     poemList = await PoemList.create();  // загрузка предыдущих стихов
+    //await Future.delayed(Duration(seconds: 5));
+    return true;
   }
 
   @override
@@ -20,9 +22,9 @@ class _FutureBuilderHome extends State<FutureBuilderHome> {
     return DefaultTextStyle(
       style: Theme.of(context).textTheme.displayMedium!,
       textAlign: TextAlign.center,
-      child: FutureBuilder<void>(
+      child: FutureBuilder<bool>(
         future: _loading(), // a previously-obtained Future<String> or null
-        builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
           Widget children;
           if (snapshot.hasData) {
             children = Home();

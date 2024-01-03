@@ -14,7 +14,7 @@ class _PoemChooser extends State<PoemChooser> {
       child: Column(
         children: [
           Text(
-            "Выбирите стих",
+            "Выберите стих",
             style: TextStyle(
               color: ColorHeader,
               fontSize: 30,
@@ -28,7 +28,13 @@ class _PoemChooser extends State<PoemChooser> {
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                       child: ListTile(
-                        title: Text(poemList.poems[index].title),
+                        title: Text(
+                          poemList.poems[index].title,
+                          style: TextStyle(
+                            fontSize: 25,
+                          ),
+                          //style: Theme.of(context).textTheme.titleLarge,
+                        ),
                         selected: index == poemList.selectedIndex,
                         onTap: () {
                           setState(() {
