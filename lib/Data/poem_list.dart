@@ -26,26 +26,42 @@ class PoemList {
 
   // вместо конструктора чтобы использовать await
   static Future<PoemList> create() async {
-    final directory = await getApplicationDocumentsDirectory();
+    Directory directory = await getApplicationDocumentsDirectory();
+    directory = await Directory(directory.path + "/savedPoems").create(recursive: true);
     PoemList poemList = PoemList._(directory);
 
     final List<FileSystemEntity> entities = await directory.list(recursive: false).toList();
     final Iterable<File> files = entities.whereType<File>();
+    //files.forEach(print);
     for (File file in files) {
       print("Чтение файла: ${file.path}");
-      await poemList.readPoemFromFile(file);
+      String path = file.path;
+      int start = path.lastIndexOf('/') + 1;
+      int end = path.lastIndexOf('.');
+      if (end <= start) {
+        print("Точка не там");
+        continue;
+      }
+      int? numberInFileName = int.tryParse(path.substring(start, end));
+      if (numberInFileName == null) {
+        print("Не число");
+        continue;
+      }
+      poemList.addPoem(Poem(dataFile: file));
+      //await poemList.readPoemFromFile(file);
     }
 
     if (poemList.poems.isEmpty) {
-      print("Добавленна заглушка");
+      print("Добавленно приветсвующее окно");
       poemList.addPoem(Poem(
         title: "Добро пожаловать в Cramming poems!",
         original: ["Вы можете добавить стихи через меню в левом верхнем углу."],
-        numberInFileName: -1,
+        dataFile: File("${directory.path}/0.txt"),
       ));
     }
     print("Всё считанно");
 
+    poemList.poems.sort((a, b) => a.nextNumberInFileName.compareTo(b.nextNumberInFileName));
     return poemList;
   }
 
@@ -55,51 +71,17 @@ class PoemList {
   }
 
   newPoem() {
-    int numberInFileName = (_poems.length == 0) ? 0 : (_poems.last.numberInFileName + 1);
+    int nextNumberInFileName = (_poems.length == 0) ? 0 : (_poems.last.nextNumberInFileName);
     addPoem(Poem(
       original: [""],
-      title: "Новый стих ${numberInFileName}",
-      numberInFileName: numberInFileName,
+      title: "Новый стих ${nextNumberInFileName}",
+      dataFile: File("${_directory.path}/$nextNumberInFileName.txt"),
     ));
-  }
-
-  // TODO возможно уботь async если не будет использоваться
-  Future<void> readPoemFromFile(File file) async {
-    String path = file.path;
-    int start = path.lastIndexOf('/');
-    int end = path.lastIndexOf('.');
-    if(end <= start){
-      print("Точка не там");
-      return;
-    }
-    int? numberInFileName = int.tryParse(path.substring(start, end));
-    if(numberInFileName == null){
-      print("Не число");
-      return;
-    }
-    List<String> content = file.readAsStringSync().split('\n');
-    if (content.isEmpty) {
-      print("Пустой");
-      return;
-    }
-    print("Читаю");
-    String title = content.last; // отделяем название из последней строки
-    content.removeLast(); // удаляем название из основного текста
-    addPoem(Poem(
-      original: content,
-      title: title,
-      numberInFileName: numberInFileName, // получаем номер файла из его названия
-    ));
-  }
-
-  Future<void> writePoemInFile(Poem poem) async {
-    File file = File("${_directory.path}/${poem.numberInFileName}.txt");
-
-    file.writeAsString("${poem.differentTypesOfPoem[0].join()}\n${poem.title}"); // записываем в файл оригинал текста и в конце - название
   }
 
   removePoemAt(int index) {
     selectedIndex -= (index <= selectedIndex) ? 1 : 0;
+    _poems[index].deleteFile();
     _poems.removeAt(index);
   }
 

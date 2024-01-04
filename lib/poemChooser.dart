@@ -44,9 +44,6 @@ class _PoemChooser extends State<PoemChooser> {
                         },
                       ),
                       onLongPress: () async {
-                        if (index == 0) {
-                          return;
-                        }
                         await showDialog(
                             context: context,
                             builder: (BuildContext context) {
@@ -80,6 +77,9 @@ class _PoemChooser extends State<PoemChooser> {
                                     onPressed: () {
                                       setState(() {
                                         poemList.removePoemAt(index);
+                                        if(poemList.poems.length == 0){
+                                          poemList.newPoem();
+                                        }
                                       });
                                       Navigator.of(context).pop();
                                     },
@@ -98,7 +98,7 @@ class _PoemChooser extends State<PoemChooser> {
               setState(() {
                 poemList.newPoem();
               });
-              Navigator.pop(context);
+              //Navigator.pop(context);
             },
           ),
         ],

@@ -9,7 +9,7 @@ class FutureBuilderHome extends StatefulWidget {
   State<FutureBuilderHome> createState() => _FutureBuilderHome();
 }
 
-
+// класс для ожидания загрузки стихов из памяти (можно грузить что угодно до основного экрана)
 class _FutureBuilderHome extends State<FutureBuilderHome> {
   Future<bool> _loading () async{
     poemList = await PoemList.create();  // загрузка предыдущих стихов
@@ -40,7 +40,7 @@ class _FutureBuilderHome extends State<FutureBuilderHome> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 16),
-                    child: Text('Error: ${snapshot.error}'),
+                    child: Text('Ошибка: ${snapshot.error}'),
                   ),
                 ],
               ),
@@ -57,7 +57,7 @@ class _FutureBuilderHome extends State<FutureBuilderHome> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 16),
-                    child: Text('Awaiting result...'),
+                    child: Text('Загрузка стихов...'),
                   ),
                 ],
               ),
