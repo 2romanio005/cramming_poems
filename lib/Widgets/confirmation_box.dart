@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cramming_poems/colors.dart';
 import 'package:cramming_poems/styles.dart';
 
-// TODO нормальный дизвйн и адаптивность
+// TODO адаптивность
 Future<void> confirmation_box({
   required BuildContext context,
   required String text,

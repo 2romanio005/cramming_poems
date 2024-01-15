@@ -61,6 +61,15 @@ class PoemList {
     }
     print("Всё считанно");
 
+    if (poemList._poems.length == 1){
+      // FIXME убрать тестовый стих
+      poemList.addPoem(Poem(
+        title: "оооооочень бооольшй текст нннн наанавылат фыав выаьвытаырфпв лфыд а",
+        original: [""],
+        dataFile: File("${directory.path}/1.txt"),
+      ));
+    }
+
     poemList._poems.sort((a, b) => a.nextNumberInFileName.compareTo(b.nextNumberInFileName));
     return poemList;
   }

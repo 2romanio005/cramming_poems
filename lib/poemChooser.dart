@@ -30,45 +30,54 @@ class _PoemChooser extends State<PoemChooser> {
               child: ListView.builder(
                   itemCount: poemList.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
-                      child: Card(
-                        child: ListTile(
-                          title: Text(
-                            poemList[index].title,
-                            style: TextStyle(
-                              fontSize: 25,
+                    return Card(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: ListTile(
+                              title: Text(
+                                poemList[index].title,
+                                style: TextStyle(
+                                  fontSize: 25,
+                                ),
+                              ),
+                              selected: index == poemList.selectedIndex,
+                              onTap: () {
+                                setState(() {
+                                  poemList.selectedIndex = index;
+                                });
+                                Navigator.pop(context);
+                              },
                             ),
-                            //style: Theme.of(context).textTheme.titleLarge,
                           ),
-                          selected: index == poemList.selectedIndex,
-                          onTap: () {
-                            setState(() {
-                              poemList.selectedIndex = index;
-                            });
-                            Navigator.pop(context);
-                          },
-                        ),
+                          IconButton(
+                            style: buttonStyleOFF,
+                            icon: Icon(Icons.delete_forever_sharp),
+                            onPressed: () async {
+                              await confirmation_box(
+                                  context: context,
+                                  text: 'Удалить стих?',
+                                  textOK: 'Удалить',
+                                  textOFF: 'Отмена',
+                                  functionOK: () {
+                                    setState(() {
+                                      poemList.removePoemAt(index);
+                                      if (poemList.length == 0) {
+                                        poemList.newPoem();
+                                      }
+                                    });
+                                  });
+                            },
+                          )
+                        ],
                       ),
-                      onLongPress: () async {
-                        await confirmation_box(
-                            context: context,
-                            text: 'Удалить стих?',
-                            textOK: 'Удалить',
-                            textOFF: 'Отмена',
-                            functionOK: () {
-                              setState(() {
-                                poemList.removePoemAt(index);
-                                if (poemList.length == 0) {
-                                  poemList.newPoem();
-                                }
-                              });
-                            });
-                      },
                     );
                   }),
             ),
           ),
           Container(
+            padding: EdgeInsets.only(bottom: 5),
             color: ColorBackground,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

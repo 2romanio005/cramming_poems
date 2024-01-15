@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 // Создаём их копию с более понятным названием и использовать уже ёё
 Color ColorMain1 = Color.fromARGB(255, 47, 27, 126);
 Color ColorMain2 = Color.fromARGB(255, 236, 234, 255);
-Color ColorMain3 = Color.fromARGB(255, 200, 200, 200);
+Color ColorMain3 = Color.fromARGB(255, 220, 220, 220);
 Color ColorMain4 = Color.fromARGB(255, 0, 180, 0);
-Color ColorMain5 = Color.fromARGB(255, 180, 0, 0);
+Color ColorMain5 = Color.fromARGB(255, 220, 0, 0);
 // все это надо когда начнём переделывать дизайн.
 
 Color ColorBackground = ColorMain2;             // задний фон приложения
