@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       home: const FutureBuilderHome(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: PrimaryColor,
+          seedColor: ColorPrimary,
           brightness: Brightness.light,
         ),
         textTheme: TextTheme(

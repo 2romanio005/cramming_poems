@@ -51,7 +51,7 @@ class PoemList {
       //await poemList.readPoemFromFile(file);
     }
 
-    if (poemList.poems.isEmpty) {
+    if (poemList._poems.isEmpty) {
       print("Добавленно приветсвующее окно");
       poemList.addPoem(Poem(
         title: "Добро пожаловать в Cramming poems!",
@@ -61,13 +61,13 @@ class PoemList {
     }
     print("Всё считанно");
 
-    poemList.poems.sort((a, b) => a.nextNumberInFileName.compareTo(b.nextNumberInFileName));
+    poemList._poems.sort((a, b) => a.nextNumberInFileName.compareTo(b.nextNumberInFileName));
     return poemList;
   }
 
   addPoem(Poem poem) {
-    poems.add(poem);
-    selectedIndex = poems.length - 1;
+    _poems.add(poem);
+    selectedIndex = _poems.length - 1;
   }
 
   newPoem() {
@@ -85,8 +85,24 @@ class PoemList {
     _poems.removeAt(index);
   }
 
-  List<Poem> get poems {
-    return _poems;
+  clear(){
+    for(Poem poem in _poems){
+      poem.deleteFile();
+    }
+    _poems.clear();
+    newPoem();
+  }
+
+  Poem operator [](int index){
+    return _poems[index];
+  }
+
+  Poem get selectedPoem{
+    return _poems[_selectedIndex];
+  }
+
+  int get length{
+    return _poems.length;
   }
 
   set selectedIndex(newIndex) {

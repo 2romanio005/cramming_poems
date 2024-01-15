@@ -63,9 +63,10 @@ class Poem {
     return _title;
   }
 
-  List<List<String>> get differentTypesOfPoem {
-    return _differentTypesOfPoem;
+  List<String> operator [](int index){
+    return _differentTypesOfPoem[index];
   }
+
 
   late File _dataFile;
   late final int _nextNumberInFileName;
