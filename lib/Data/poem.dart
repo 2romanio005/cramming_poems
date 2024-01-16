@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:core';
+import 'dart:math';
 class Poem {
   Poem({List<String> textLines = const [""], String title = "", required File dataFile}) {
     _dataFile = dataFile;
@@ -128,7 +129,8 @@ class _Helper {
       if (line.length <= 7) {
         return line;
       } else {
-        String preservedSpaces = line.substring(0, 7) + line.substring(7).replaceAll(RegExp(r'[^ ]'), '*');
+        int numberOfCharacters = min(7, line.length);
+        String preservedSpaces = line.substring(0, numberOfCharacters) + line.substring(numberOfCharacters).replaceAll(RegExp(r'[^ ]'), '*');
         return preservedSpaces;
       }
     }).toList();

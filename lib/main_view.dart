@@ -71,19 +71,19 @@ class _MainView extends State<MainView> {
                         ),
                         DropdownMenuItem(
                           value: PoemDisplayType.halfLineRight,
-                          child: Text("Первая половина строки"),
+                          child: Text("Первая половина"),
                         ),
                         DropdownMenuItem(
                           value: PoemDisplayType.halfLineLeft,
-                          child: Text("Вторая половина строки"),
+                          child: Text("Вторая половина"),
                         ),
                         DropdownMenuItem(
                           value: PoemDisplayType.first7,
-                          child: Text("Первых 7 букв"),
+                          child: Text("Первые 7 букв"),
                         ),
                         DropdownMenuItem(
                           value: PoemDisplayType.firstAndLast,
-                          child: Text("Первое и последнее каждой строки"),
+                          child: Text("Первое и последнее слово"),
                         ),
                       ],
                     )
