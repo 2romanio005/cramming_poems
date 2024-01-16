@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cramming_poems/colors.dart';
 import 'package:cramming_poems/styles.dart';
 
-// TODO адаптивность
+
 Future<void> confirmation_box({
   required BuildContext context,
   required String text,
@@ -18,6 +18,8 @@ Future<void> confirmation_box({
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          insetPadding: EdgeInsets.zero,
+          actionsAlignment: MainAxisAlignment.spaceAround,
           title: Text(text,
               style: TextStyle(
                 color: ColorFont,
