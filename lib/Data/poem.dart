@@ -20,13 +20,11 @@ class Poem {
   Future _readFromFile() async {
     try {
       List<String> content = await _dataFile.readAsLines();
-      // print("Считано ${content.length}: " + tmp);
       String newTitle = content.last; // отделяем название из последней строки
 
       content.removeLast(); // удаляем название из основного текста
       _textLines = content; // прочитали оригинал
       title = newTitle; // обязательно после запис оргинала
-      //print("title: " + title);
     } catch (error) {
       print(error);
     }
@@ -84,7 +82,9 @@ class _Helper {
   static Map<PoemDisplayType, List<String> Function(List<String>)> map = {
     PoemDisplayType.original: (poem) => poem,
     PoemDisplayType.halfLineLeft: _halfLineLeft,
-    PoemDisplayType.halfLineRight: _halfLineRight
+    PoemDisplayType.halfLineRight: _halfLineRight,
+    PoemDisplayType.first7: _first7,
+    PoemDisplayType.firstAndLast: _firstAndLast,
   };
 
   static List<String> getFormattedPoem(PoemDisplayType type, List<String> poem) {
@@ -99,7 +99,7 @@ class _Helper {
       int halfLength = (words.length / 2).ceil();
 
       List<String> modifiedWords = words.map((word) {
-        return words.indexOf(word) < halfLength ? '*****' : word;
+        return words.indexOf(word) < halfLength ? _hideString(word) : word;
       }).toList();
 
       result.add(modifiedWords.join(' '));
@@ -115,17 +115,44 @@ class _Helper {
       int halfLength = (words.length / 2).ceil();
 
       List<String> modifiedWords = words.map((word) {
-        return words.indexOf(word) >= halfLength ? '*****' : word;
+        return words.indexOf(word) >= halfLength ? _hideString(word) : word;
       }).toList();
 
       result.add(modifiedWords.join(' '));
     }
     return result;
   }
+
+  static List<String> _first7(List<String> poem) {
+    return poem.map((line) {
+      if (line.length <= 7) {
+        return line;
+      } else {
+        String preservedSpaces = line.substring(0, 7) + line.substring(7).replaceAll(RegExp(r'[^ ]'), '*');
+        return preservedSpaces;
+      }
+    }).toList();
+  }
+
+  static List<String> _firstAndLast(List<String> poem) {
+    List<String> result = [];
+    for (String line in poem) {
+      List<String> words = line.split(' ');
+      for (int i = 1; i < words.length - 1; i++) {
+        words[i] = _hideString(words[i]);
+      }
+      result.add(words.join(" "));
+    }
+    return result;
+  }
+
+  static String _hideString(String string) => "*" * string.length;
 }
 
 enum PoemDisplayType {
   original,
   halfLineLeft,
   halfLineRight,
+  first7,
+  firstAndLast
 }

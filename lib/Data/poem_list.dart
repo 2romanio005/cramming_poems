@@ -26,7 +26,7 @@ class PoemList {
   // вместо конструктора чтобы использовать await
   static Future<PoemList> create() async {
     Directory directory = await getApplicationDocumentsDirectory();
-    directory = await Directory(directory.path + "/savedPoems").create(recursive: true);
+    directory = await Directory("${directory.path}/savedPoems").create(recursive: true);
     PoemList poemList = PoemList._(directory);
 
     final List<FileSystemEntity> entities = await directory.list(recursive: false).toList();
@@ -69,11 +69,11 @@ class PoemList {
   }
 
   newPoem() {
-    int nextNumberInFileName = (_poems.length == 0) ? 0 : (_poems.last.nextNumberInFileName);
+    int nextNumberInFileName = (_poems.isEmpty) ? 0 : (_poems.last.nextNumberInFileName);
     _selectedIndex = nextNumberInFileName;
     addPoem(Poem(
       textLines: [""],
-      title: "Новый стих ${nextNumberInFileName}",
+      title: "Новый стих $nextNumberInFileName",
       dataFile: File("${_directory.path}/$nextNumberInFileName.txt"),
     ));
   }
