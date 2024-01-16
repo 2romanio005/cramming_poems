@@ -25,11 +25,17 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
           bodyLarge: GoogleFonts.oswald(
-            fontSize: 50,
+            // rubikMonoOne
+            // quantico
+            fontSize: 25,
             fontWeight: FontWeight.bold,
           ),
-          bodySmall: GoogleFonts.merriweather(
-            fontSize: 14,
+          bodyMedium: GoogleFonts.robotoMono(
+            // anonymousPro
+            fontSize: 16,
+          ),
+          bodySmall:  GoogleFonts.robotoMono(
+            fontSize: 10,
           ),
         ),
       ),

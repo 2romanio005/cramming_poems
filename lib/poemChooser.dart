@@ -40,15 +40,15 @@ class _PoemChooser extends State<PoemChooser> {
                           Expanded(
                             child: ListTile(
                               title: Text(
-                                poemList[index].title,
+                                poemList[index].poem.title,
                                 style: TextStyle(
                                   fontSize: 25,
                                 ),
                               ),
-                              selected: index == poemList.selectedIndex,
+                              selected: index == poemList.selectedPoemIndex,
                               onTap: () {
                                 setState(() {
-                                  poemList.selectedIndex = index;
+                                  poemList.selectedPoemIndex = index;
                                 });
                                 widget.onChange();
                                 Navigator.pop(context);
@@ -67,9 +67,6 @@ class _PoemChooser extends State<PoemChooser> {
                                   functionOK: () {
                                     setState(() {
                                       poemList.removePoemAt(index);
-                                      if (poemList.length == 0) {
-                                        poemList.newPoem();
-                                      }
                                       widget.onChange();
                                     });
                                   });
@@ -92,7 +89,7 @@ class _PoemChooser extends State<PoemChooser> {
                   icon: const Icon(Icons.add),
                   onPressed: () {
                     setState(() {
-                      poemList.newPoem();
+                      poemList.newPoemFile();
                     });
                     widget.onChange();
                     Navigator.pop(context);  // закрытие окна выбора стиха

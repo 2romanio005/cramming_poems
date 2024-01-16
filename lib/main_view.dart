@@ -1,21 +1,27 @@
+import 'package:cramming_poems/Data/poem_list.dart';
 import 'package:flutter/material.dart';
 
 import 'Data/poem.dart';
 
 class MainView extends StatefulWidget {
-  const MainView({super.key, required this.poemData});
-
-  final Poem poemData;
+  //final GlobalKey<_MainView> _key = GlobalKey();
+  // void update(){
+  //   _key.currentState!.redraw();
+  // }
 
   @override
   State<StatefulWidget> createState() => _MainView();
 }
 
 class _MainView extends State<MainView> {
+  // Poem selectedPoemCopy = Poem.copy(poemList.selectedPoem);  // работать мы будет только с копией
   bool _isEditMode = false;
-  PoemDisplayType poemDisplayType = PoemDisplayType.original;
-  final nameController = TextEditingController();
+  final titleController = TextEditingController();
   final textController = TextEditingController();
+
+  // void redraw(){
+  //   setState(() {});
+  // }
 
   // TODO: РАЗДЕЛИТЬ НА ДВА ВИДЖЕТА, ПРОСМОТР И РЕДАКТИРОВАНИЕ
 
@@ -26,8 +32,8 @@ class _MainView extends State<MainView> {
 
     setState(() {
       _isEditMode = true;
-      nameController.text = widget.poemData.title;
-      textController.text = widget.poemData.textLines.join("\n");
+      titleController.text = poemList.selectedPoem.title;
+      textController.text = poemList.selectedPoem.text.join("\n");
     });
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -40,11 +46,15 @@ class _MainView extends State<MainView> {
 
     setState(() {
       _isEditMode = false;
-      widget.poemData.title = nameController.text;
-      widget.poemData.textLines = textController.text.split("\n");
-      widget.poemData.writeInFile();
+      Poem poem = Poem(
+        text: textController.text.split('\n'),
+        title: titleController.text,
+      );
+      print(poemList.selectedPoem.text);
+      print(poem.text);
+      poemList.selectedPoem = poem; // копируем обратно (сохраяем копию вместо оригинала)
     });
-
+    print(poemList.selectedPoem.text);
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
@@ -54,65 +64,23 @@ class _MainView extends State<MainView> {
       child: Column(
         children: (!_isEditMode)
             ? [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    DropdownButton<PoemDisplayType>(
-                      value: poemDisplayType,
-                      onChanged: (PoemDisplayType? newValue) {
-                        setState(() {
-                          poemDisplayType = newValue!;
-                        });
-                      },
-                      items: const [
-                        DropdownMenuItem(
-                          value: PoemDisplayType.original,
-                          child: Text("Оригинал"),
-                        ),
-                        DropdownMenuItem(
-                          value: PoemDisplayType.halfLineRight,
-                          child: Text("Первая половина"),
-                        ),
-                        DropdownMenuItem(
-                          value: PoemDisplayType.halfLineLeft,
-                          child: Text("Вторая половина"),
-                        ),
-                        DropdownMenuItem(
-                          value: PoemDisplayType.first7,
-                          child: Text("Первые 7 букв"),
-                        ),
-                        DropdownMenuItem(
-                          value: PoemDisplayType.firstAndLast,
-                          child: Text("Первое и последнее слово"),
-                        ),
-                      ],
-                    )
-                  ],
+                Text(poemList.selectedPoem.title, style: Theme.of(context).textTheme.bodyLarge),
+                Text(
+                  poemList.selectedFormatText.join("\n"),
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  overflow: TextOverflow.clip,
                 ),
-                Column(
-                  children: [
-                    Text(widget.poemData.title, style: Theme.of(context).textTheme.bodyLarge),
-                    Text(
-                      widget.poemData.getFormattedTextLines(poemDisplayType).join("\n"),
-                      style: Theme.of(context).textTheme.bodyMedium,
-                      overflow: TextOverflow.clip,
-                    ),
-                    IconButton(onPressed: _toggleEditModeOn, icon: const Icon(Icons.edit)),
-                  ],
-                ),
+                IconButton(onPressed: _toggleEditModeOn, icon: const Icon(Icons.edit)),
               ]
             : [
-                Column(
-                  children: [
-                    TextField(controller: nameController, style: Theme.of(context).textTheme.bodyLarge),
-                    TextField(
-                      controller: textController,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                      maxLines: null,
-                    ),
-                    IconButton(onPressed: _toggleEditModeOff, icon: const Icon(Icons.save)),
-                  ],
+                TextField(controller: titleController, style: Theme.of(context).textTheme.bodyLarge),
+                TextField(
+                  controller: textController,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  maxLines: null,
                 ),
+                IconButton(onPressed: _toggleEditModeOff, icon: const Icon(Icons.save)),
+                //IconButton(onPressed: _toggleEditModeOff, icon: const Icon(Icons.cancel)),
               ],
       ),
     );
