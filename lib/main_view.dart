@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'Data/poem_data.dart';
+import 'Data/poem.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key, required this.poemData});
 
-  final PoemData poemData;
+  final Poem poemData;
   @override
   State<StatefulWidget> createState() => _MainView();
 }
@@ -13,7 +13,6 @@ class MainView extends StatefulWidget {
 class _MainView extends State<MainView> {
   bool _isEditMode = false;
   final nameController = TextEditingController();
-  final authorController = TextEditingController();
   final textController = TextEditingController();
 
   // TODO: РАЗДЕЛИТЬ НА ДВА ВИДЖЕТА, ПРОСМОТР И РЕДАКТИРОВАНИЕ
@@ -37,9 +36,10 @@ class _MainView extends State<MainView> {
 
     setState(() {
       _isEditMode = false;
-      widget.poemData.name = nameController.text;
-      widget.poemData.author = authorController.text;
-      widget.poemData.text = textController.text;
+      widget.poemData.title = nameController.text;
+      nameController.clear();
+      widget.poemData.textLines = textController.text.split("\n");
+      textController.clear();
     });
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -57,16 +57,14 @@ class _MainView extends State<MainView> {
         ),
         if (!_isEditMode) Column(
           children: [
-            Text(widget.poemData.name, style: Theme.of(context).textTheme.bodyLarge),
-            Text(widget.poemData.author, style: Theme.of(context).textTheme.bodySmall),
-            Text(widget.poemData.text, style: Theme.of(context).textTheme.bodyMedium),
+            Text(widget.poemData.title, style: Theme.of(context).textTheme.bodyLarge),
+            Text(widget.poemData.textLines.join("\n"), style: Theme.of(context).textTheme.bodyMedium),
             IconButton(onPressed: _toggleEditModeOn, icon: const Icon(Icons.edit))
           ],
         )
         else Column(
           children: [
             TextField(controller: nameController, style: Theme.of(context).textTheme.bodyLarge),
-            TextField(controller: authorController, style: Theme.of(context).textTheme.bodySmall),
             TextField(
                 controller: textController,
                 style: Theme.of(context).textTheme.bodyMedium,

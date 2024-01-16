@@ -3,7 +3,6 @@ import 'package:cramming_poems/Data/poem.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 
-// всё взаимодейстиве со списком стихов
 class PoemList {
   PoemList._(this._directory) {
     _poems = [];
@@ -55,18 +54,8 @@ class PoemList {
       print("Добавленно приветсвующее окно");
       poemList.addPoem(Poem(
         title: "Добро пожаловать в Cramming poems!",
-        original: ["Вы можете добавить стихи через меню в левом верхнем углу."],
+        textLines: ["Вы можете добавить стихи через меню в левом верхнем углу."],
         dataFile: File("${directory.path}/0.txt"),
-      ));
-    }
-    print("Всё считанно");
-
-    if (poemList._poems.length == 1){
-      // FIXME убрать тестовый стих
-      poemList.addPoem(Poem(
-        title: "оооооочень бооольшй текст нннн наанавылат фыав выаьвытаырфпв лфыд а",
-        original: [""],
-        dataFile: File("${directory.path}/1.txt"),
       ));
     }
 
@@ -81,8 +70,9 @@ class PoemList {
 
   newPoem() {
     int nextNumberInFileName = (_poems.length == 0) ? 0 : (_poems.last.nextNumberInFileName);
+    _selectedIndex = nextNumberInFileName;
     addPoem(Poem(
-      original: [""],
+      textLines: [""],
       title: "Новый стих ${nextNumberInFileName}",
       dataFile: File("${_directory.path}/$nextNumberInFileName.txt"),
     ));

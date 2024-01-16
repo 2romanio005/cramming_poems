@@ -7,6 +7,9 @@ import 'package:cramming_poems/colors.dart';
 import 'package:cramming_poems/styles.dart';
 
 class PoemChooser extends StatefulWidget {
+  const PoemChooser({super.key, required this.onChange});
+
+  final Function onChange;
   @override
   _PoemChooser createState() => _PoemChooser();
 }
@@ -47,6 +50,7 @@ class _PoemChooser extends State<PoemChooser> {
                                 setState(() {
                                   poemList.selectedIndex = index;
                                 });
+                                widget.onChange();
                                 Navigator.pop(context);
                               },
                             ),
@@ -66,6 +70,7 @@ class _PoemChooser extends State<PoemChooser> {
                                       if (poemList.length == 0) {
                                         poemList.newPoem();
                                       }
+                                      widget.onChange();
                                     });
                                   });
                             },
@@ -89,7 +94,8 @@ class _PoemChooser extends State<PoemChooser> {
                     setState(() {
                       poemList.newPoem();
                     });
-                    //Navigator.pop(context);  // закрытие окна выбора стиха
+                    widget.onChange();
+                    Navigator.pop(context);  // закрытие окна выбора стиха
                   },
                 ),
                 IconButton(
@@ -105,6 +111,7 @@ class _PoemChooser extends State<PoemChooser> {
                           setState(() {
                             poemList.clear();
                           });
+                          widget.onChange();
                           //Navigator.pop(context);  // закрытие окна выбора стиха
                         });
                   },
