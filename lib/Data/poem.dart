@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'dart:core';
 class Poem {
   Poem({List<String> textLines = const [""], String title = "", required File dataFile}) {
     _dataFile = dataFile;
@@ -62,6 +62,10 @@ class Poem {
     return _textLines;
   }
 
+  List<String> getFormattedTextLines(PoemDisplayType type) {
+    return _Helper.getFormattedPoem(type, _textLines);
+  }
+
   set textLines(List<String> newTextLines) {
     if (newTextLines.isEmpty) {
       _textLines = ["empty"];
@@ -74,4 +78,54 @@ class Poem {
   late final int _nextNumberInFileName;
   late String _title;
   late List<String> _textLines;
+}
+
+class _Helper {
+  static Map<PoemDisplayType, List<String> Function(List<String>)> map = {
+    PoemDisplayType.original: (poem) => poem,
+    PoemDisplayType.halfLineLeft: _halfLineLeft,
+    PoemDisplayType.halfLineRight: _halfLineRight
+  };
+
+  static List<String> getFormattedPoem(PoemDisplayType type, List<String> poem) {
+    return map[type]!(poem);
+  }
+
+  static List<String> _halfLineLeft(List<String> poem) {
+    List<String> result = [];
+    for (String line in poem) {
+      List<String> words = line.split(' ');
+
+      int halfLength = (words.length / 2).ceil();
+
+      List<String> modifiedWords = words.map((word) {
+        return words.indexOf(word) < halfLength ? '*****' : word;
+      }).toList();
+
+      result.add(modifiedWords.join(' '));
+    }
+    return result;
+  }
+
+  static List<String> _halfLineRight(List<String> poem) {
+    List<String> result = [];
+    for (String line in poem) {
+      List<String> words = line.split(' ');
+
+      int halfLength = (words.length / 2).ceil();
+
+      List<String> modifiedWords = words.map((word) {
+        return words.indexOf(word) >= halfLength ? '*****' : word;
+      }).toList();
+
+      result.add(modifiedWords.join(' '));
+    }
+    return result;
+  }
+}
+
+enum PoemDisplayType {
+  original,
+  halfLineLeft,
+  halfLineRight,
 }

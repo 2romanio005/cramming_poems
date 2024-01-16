@@ -12,6 +12,7 @@ class MainView extends StatefulWidget {
 
 class _MainView extends State<MainView> {
   bool _isEditMode = false;
+  PoemDisplayType poemDisplayType = PoemDisplayType.original;
   final nameController = TextEditingController();
   final textController = TextEditingController();
 
@@ -51,10 +52,31 @@ class _MainView extends State<MainView> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text("выбор режима"),
+              DropdownButton<PoemDisplayType>(
+                value: poemDisplayType,
+                onChanged: (PoemDisplayType? newValue) {
+                  setState(() {
+                    poemDisplayType = newValue!;
+                  });
+                },
+                items: const [
+                  DropdownMenuItem(
+                    value: PoemDisplayType.original,
+                    child: Text("Оригинал"),
+                  ),
+                  DropdownMenuItem(
+                    value: PoemDisplayType.halfLineLeft,
+                    child: Text("Первая половина строки"),
+                  ),
+                  DropdownMenuItem(
+                    value: PoemDisplayType.halfLineRight,
+                    child: Text("Вторая половина строки"),
+                  ),
+                ],
+              )
             ],
           ),
           if (!_isEditMode)
@@ -62,7 +84,7 @@ class _MainView extends State<MainView> {
               children: [
                 Text(widget.poemData.title, style: Theme.of(context).textTheme.bodyLarge),
                 Text(
-                  widget.poemData.textLines.join("\n"),
+                  widget.poemData.getFormattedTextLines(poemDisplayType).join("\n"),
                   style: Theme.of(context).textTheme.bodyMedium,
                   overflow: TextOverflow.clip,
                 ),
