@@ -12,10 +12,15 @@ class FutureBuilderHome extends StatefulWidget {
 // класс для ожидания загрузки стихов из памяти (можно грузить что угодно до основного экрана)
 class _FutureBuilderHome extends State<FutureBuilderHome> {
   Future<bool> _loading () async{
+    print("start:");
     poemList = await PoemList.create();  // загрузка предыдущих стихов
+    //print("prefin: ${poemList.selectedPoem.title}");
     //await Future.delayed(Duration(seconds: 5));
+    print("fin: ${poemList.selectedPoem.title}");
     return true;
   }
+
+  late final Future<bool> future = _loading();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +28,7 @@ class _FutureBuilderHome extends State<FutureBuilderHome> {
       style: Theme.of(context).textTheme.displayMedium!,
       textAlign: TextAlign.center,
       child: FutureBuilder<bool>(
-        future: _loading(), // a previously-obtained Future<String> or null
+        future: future, // a previously-obtained Future<String> or null
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
           Widget children;
           if (snapshot.hasData) {

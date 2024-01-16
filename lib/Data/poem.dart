@@ -139,11 +139,3 @@ enum PoemDisplayType {
   first7,
   firstAndLast
 }
-
-Map<PoemDisplayType, String> namePoemDisplayType = {
-  PoemDisplayType.original: "Оригинал",
-  PoemDisplayType.halfLineLeft: "Первая половина",
-  PoemDisplayType.halfLineRight: "Вторая половина",
-  PoemDisplayType.first7: "Первые 7 букв",
-  PoemDisplayType.firstAndLast: "Первое и последнее слово",
-};

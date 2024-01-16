@@ -42,7 +42,7 @@ class PoemList {
       ));
       //await createdPemList.readPoemFromFile(file);
     }
-
+    print("Всё ститано");
     if (createdPemList._listPoemFile.isEmpty) {
       print("Добавленно приветсвующее окно");
       createdPemList.addPoemFile(PoemFile(
@@ -141,3 +141,5 @@ class PoemList {
 }
 
 late PoemList poemList; // Список всех стихов
+
+

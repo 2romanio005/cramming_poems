@@ -14,16 +14,13 @@ class MainView extends StatefulWidget {
 }
 
 class _MainView extends State<MainView> {
-  // Poem selectedPoemCopy = Poem.copy(poemList.selectedPoem);  // работать мы будет только с копией
+  // Poem selectedPoemCopy = Poem.copy(poemList.selectedPoem);  // работать мы будет с копией
   bool _isEditMode = false;
   final titleController = TextEditingController();
   final textController = TextEditingController();
-
-  // void redraw(){
+  // void redraw(){  // я почитал, в flutter не принято пробрасывать перерисовку в детей, поэтому setState находиться в home
   //   setState(() {});
   // }
-
-  // TODO: РАЗДЕЛИТЬ НА ДВА ВИДЖЕТА, ПРОСМОТР И РЕДАКТИРОВАНИЕ
 
   void _toggleEditModeOn() {
     const snackBar = SnackBar(
@@ -46,42 +43,44 @@ class _MainView extends State<MainView> {
 
     setState(() {
       _isEditMode = false;
-      Poem poem = Poem(
+      poemList.selectedPoem = Poem(
         text: textController.text.split('\n'),
         title: titleController.text,
-      );
-      print(poemList.selectedPoem.text);
-      print(poem.text);
-      poemList.selectedPoem = poem; // копируем обратно (сохраяем копию вместо оригинала)
+      ); // заменяем старый стих на новый
     });
-    print(poemList.selectedPoem.text);
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: (!_isEditMode)
-            ? [
-                Text(poemList.selectedPoem.title, style: Theme.of(context).textTheme.bodyLarge),
-                Text(
-                  poemList.selectedFormatText.join("\n"),
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  overflow: TextOverflow.clip,
-                ),
-                IconButton(onPressed: _toggleEditModeOn, icon: const Icon(Icons.edit)),
-              ]
-            : [
-                TextField(controller: titleController, style: Theme.of(context).textTheme.bodyLarge),
-                TextField(
-                  controller: textController,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  maxLines: null,
-                ),
-                IconButton(onPressed: _toggleEditModeOff, icon: const Icon(Icons.save)),
-                //IconButton(onPressed: _toggleEditModeOff, icon: const Icon(Icons.cancel)),
-              ],
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              children: (!_isEditMode)
+                  ? [ // оставь так скобочки, так удобнее тестить, удаляй такие коментарии когда прочитаешь
+                      Text(poemList.selectedPoem.title, style: Theme.of(context).textTheme.bodyLarge),
+                      Text(
+                        poemList.selectedFormatText.join("\n"),
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        overflow: TextOverflow.clip,
+                      ),
+                      IconButton(onPressed: _toggleEditModeOn, icon: const Icon(Icons.edit)),
+                    ]
+                  : [
+                      TextField(controller: titleController, style: Theme.of(context).textTheme.bodyLarge),
+                      TextField(
+                        controller: textController,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        maxLines: null,
+                      ),
+                      IconButton(onPressed: _toggleEditModeOff, icon: const Icon(Icons.save)),
+                      //IconButton(onPressed: _toggleEditModeOff, icon: const Icon(Icons.cancel)),
+                    ],
+            ),
+          )
+        ],
       ),
     );
   }

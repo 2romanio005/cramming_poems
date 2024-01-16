@@ -14,19 +14,22 @@ class PoemFile {
     if (dataFile.existsSync()) {
       _readFromFile();
     } else {
+      print("Writing: $path");
       _writeInFile();
     }
   }
 
   /// Read Poem from it's file.
-  Future _readFromFile() async {
+  // FIXME нельзя делать чтение асинхронным, точнее надо в poemList.creat как то дожидаться конце считывания иначе ловим баг на отображение несчитанных файло
+  void _readFromFile() {
     try {
-      List<String> content = await _dataFile.readAsLines();
+      List<String> content = _dataFile.readAsLinesSync();
       String newTitle = content.last; // отделяем название из последней строки
 
       content.removeLast(); // удаляем название из основного текста
-      poem.text = content; // прочитали оригинал
-      poem.title = newTitle; // обязательно после запис оргинала
+      _poem.text = content; // прочитали оригинал
+      _poem.title = newTitle; // обязательно после запис оргинала
+      print("Reading: ${_dataFile.path} as $newTitle");
     } catch (error) {
       print(error);
     }
