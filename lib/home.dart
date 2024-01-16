@@ -30,18 +30,7 @@ class _Home extends State<Home> {
         margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
         child: PoemChooser(),
       ),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text("выбор режима")
-            ],
-          ),
-          MainView(poemData: PoemData("Название", "Автор", "Текст")),
-        ],
-      )
-
+      body: MainView(poemData: PoemData("Название", "Автор", "Текст")),
     );
   }
 }
