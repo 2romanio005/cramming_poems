@@ -33,7 +33,7 @@ class Poem {
   }
 
   Future<void> writeInFile() async {
-    _dataFile.writeAsString("${_textLines.join()}\n$_title"); // записываем в файл оригинал текста и в конце - название
+    _dataFile.writeAsString("${_textLines.join("\n")}\n$_title"); // записываем в файл оригинал текста и в конце - название
   }
 
   void deleteFile() {

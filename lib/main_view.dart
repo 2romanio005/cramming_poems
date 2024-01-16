@@ -24,6 +24,8 @@ class _MainView extends State<MainView> {
 
     setState(() {
       _isEditMode = true;
+      nameController.text = widget.poemData.title;
+      textController.text = widget.poemData.textLines.join("\n");
     });
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -37,9 +39,8 @@ class _MainView extends State<MainView> {
     setState(() {
       _isEditMode = false;
       widget.poemData.title = nameController.text;
-      nameController.clear();
       widget.poemData.textLines = textController.text.split("\n");
-      textController.clear();
+      widget.poemData.writeInFile();
     });
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -47,33 +48,41 @@ class _MainView extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text("выбор режима")
-          ],
-        ),
-        if (!_isEditMode) Column(
-          children: [
-            Text(widget.poemData.title, style: Theme.of(context).textTheme.bodyLarge),
-            Text(widget.poemData.textLines.join("\n"), style: Theme.of(context).textTheme.bodyMedium),
-            IconButton(onPressed: _toggleEditModeOn, icon: const Icon(Icons.edit))
-          ],
-        )
-        else Column(
-          children: [
-            TextField(controller: nameController, style: Theme.of(context).textTheme.bodyLarge),
-            TextField(
-                controller: textController,
-                style: Theme.of(context).textTheme.bodyMedium,
-                maxLines: 15 // TODO: УБРАТЬ ОГРАНИЧЕНИЕ БЕЗ ПЕРЕПОЛНЕНИЯ
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text("выбор режима"),
+            ],
+          ),
+          if (!_isEditMode)
+            Column(
+              children: [
+                Text(widget.poemData.title, style: Theme.of(context).textTheme.bodyLarge),
+                Text(
+                  widget.poemData.textLines.join("\n"),
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  overflow: TextOverflow.clip,
+                ),
+                IconButton(onPressed: _toggleEditModeOn, icon: const Icon(Icons.edit)),
+              ],
+            )
+          else
+            Column(
+              children: [
+                TextField(controller: nameController, style: Theme.of(context).textTheme.bodyLarge),
+                TextField(
+                  controller: textController,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  maxLines: null,
+                ),
+                IconButton(onPressed: _toggleEditModeOff, icon: const Icon(Icons.close)),
+              ],
             ),
-            IconButton(onPressed: _toggleEditModeOff, icon: const Icon(Icons.close))
-          ],
-        )
-      ]
+        ],
+      ),
     );
   }
 }
