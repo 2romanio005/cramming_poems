@@ -61,6 +61,7 @@ class Poem {
 
 
 class _Helper {
+  static String hide = "_";
   static Map<PoemDisplayType, List<String> Function(List<String>)> map = {
     PoemDisplayType.original: (poem) => poem,
     PoemDisplayType.halfLineLeft: _halfLineLeft,
@@ -73,34 +74,32 @@ class _Helper {
     return map[type]!(poem);
   }
 
-  static List<String> _halfLineLeft(List<String> poem) {
-    List<String> result = [];
-    for (String line in poem) {
-      List<String> words = line.split(' ');
-
-      int halfLength = (words.length / 2).ceil();
-
-      List<String> modifiedWords = words.map((word) {
-        return words.indexOf(word) < halfLength ? _hideString(word) : word;
-      }).toList();
-
-      result.add(modifiedWords.join(' '));
-    }
-    return result;
-  }
-
   static List<String> _halfLineRight(List<String> poem) {
     List<String> result = [];
     for (String line in poem) {
       List<String> words = line.split(' ');
 
       int halfLength = (words.length / 2).ceil();
+      for (int i = 0; i < words.length; i++) {
+        words[i] = i < halfLength ? _hideString(words[i]) : words[i];
+      }
 
-      List<String> modifiedWords = words.map((word) {
-        return words.indexOf(word) >= halfLength ? _hideString(word) : word;
-      }).toList();
+      result.add(words.join(' '));
+    }
+    return result;
+  }
 
-      result.add(modifiedWords.join(' '));
+  static List<String> _halfLineLeft(List<String> poem) {
+    List<String> result = [];
+    for (String line in poem) {
+      List<String> words = line.split(' ');
+
+      int halfLength = (words.length / 2).floor();
+      for (int i = 0; i < words.length; i++) {
+        words[i] = i >= halfLength ? _hideString(words[i]) : words[i];
+      }
+
+      result.add(words.join(' '));
     }
     return result;
   }
@@ -111,7 +110,8 @@ class _Helper {
         return line;
       } else {
         int numberOfCharacters = min(7, line.length);
-        String preservedSpaces = line.substring(0, numberOfCharacters) + line.substring(numberOfCharacters).replaceAll(RegExp(r'[^ ]'), '*');
+        String preservedSpaces = line.substring(0, numberOfCharacters) +
+            line.substring(numberOfCharacters).replaceAll(RegExp(r'[^ ]'), hide);
         return preservedSpaces;
       }
     }).toList();
@@ -129,7 +129,7 @@ class _Helper {
     return result;
   }
 
-  static String _hideString(String string) => "*" * string.length;
+  static String _hideString(String string) => hide * string.length;
 }
 
 enum PoemDisplayType {
