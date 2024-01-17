@@ -1,3 +1,4 @@
+import 'package:cramming_poems/Data/poem_list.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cramming_poems/poemChooser.dart';
@@ -5,7 +6,6 @@ import 'package:cramming_poems/displayTypeChooser.dart';
 import 'package:cramming_poems/main_view.dart';
 
 import 'package:cramming_poems/colors.dart';
-
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -15,7 +15,9 @@ class Home extends StatefulWidget {
 }
 
 class _Home extends State<Home> {
-  void redraw(){
+  MainView mainView = MainView();
+
+  void redraw() {
     setState(() {});
   }
 
@@ -44,19 +46,27 @@ class _Home extends State<Home> {
           "ЗАУЧИВАНИЕ СТИХОВ",
           style: TextStyle(
             color: ColorHeader,
-            fontSize: 30,
+            fontSize: 28,
           ),
         ),
       ),
       drawer: Container(
         margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
-        child: PoemChooser(onChange: redraw),
+        child: PoemChooser(
+          onSelect: redraw,
+          onDelete: redraw,
+          onAdd: () {
+            mainView.toggleEditModeOn();
+            redraw();
+            print("Add");
+          },
+        ),
       ),
       endDrawer: Container(
         margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
         child: DisplayTypeChooser(onChange: redraw),
       ),
-      body: MainView(),
+      body: mainView,
     );
   }
 }

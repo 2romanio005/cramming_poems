@@ -7,9 +7,12 @@ import 'package:cramming_poems/colors.dart';
 import 'package:cramming_poems/styles.dart';
 
 class PoemChooser extends StatefulWidget {
-  const PoemChooser({super.key, required this.onChange});
+  const PoemChooser({super.key, required this.onSelect, required this.onDelete, required this.onAdd});
 
-  final Function onChange;
+  final void Function() onSelect;
+  final void Function() onDelete;
+  final void Function() onAdd;
+
   @override
   _PoemChooser createState() => _PoemChooser();
 }
@@ -50,7 +53,7 @@ class _PoemChooser extends State<PoemChooser> {
                                 setState(() {
                                   poemList.selectedPoemIndex = index;
                                 });
-                                widget.onChange();
+                                widget.onSelect();
                                 Navigator.pop(context);
                               },
                             ),
@@ -67,7 +70,7 @@ class _PoemChooser extends State<PoemChooser> {
                                   functionOK: () {
                                     setState(() {
                                       poemList.removePoemAt(index);
-                                      widget.onChange();
+                                      widget.onDelete();
                                     });
                                   });
                             },
@@ -91,8 +94,8 @@ class _PoemChooser extends State<PoemChooser> {
                     setState(() {
                       poemList.newPoemFile();
                     });
-                    widget.onChange();
-                    Navigator.pop(context);  // закрытие окна выбора стиха
+                    widget.onAdd();
+                    Navigator.pop(context); // закрытие окна выбора стиха
                   },
                 ),
                 IconButton(
@@ -108,7 +111,7 @@ class _PoemChooser extends State<PoemChooser> {
                           setState(() {
                             poemList.clear();
                           });
-                          widget.onChange();
+                          widget.onSelect();
                           //Navigator.pop(context);  // закрытие окна выбора стиха
                         });
                   },
