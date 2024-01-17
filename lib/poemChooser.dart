@@ -57,7 +57,7 @@ class _PoemChooser extends State<PoemChooser> {
                           ),
                           IconButton(
                             style: buttonStyleOFF,
-                            icon: Icon(Icons.delete_forever_sharp),
+                            icon: const Icon(Icons.delete_forever_sharp),
                             onPressed: () async {
                               await confirmation_box(
                                   context: context,
@@ -79,7 +79,7 @@ class _PoemChooser extends State<PoemChooser> {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(bottom: 5),
+            padding: const EdgeInsets.only(bottom: 5),
             color: ColorBackground,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

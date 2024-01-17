@@ -27,7 +27,7 @@ class _Home extends State<Home> {
         actions: [
           Builder(
             builder: (context) => IconButton(
-              icon: Icon(Icons.arrow_drop_down),
+              icon: const Icon(Icons.arrow_drop_down),
               onPressed: () => Scaffold.of(context).openEndDrawer(),
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             ),
@@ -35,12 +35,11 @@ class _Home extends State<Home> {
         ],
         leading: Builder(
           builder: (context) => IconButton(
-            icon: Icon(Icons.list),
+            icon: const Icon(Icons.list),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         ),
         title: Text(
-          //"CRAMMING POEMS",
           "ЗАУЧИВАНИЕ СТИХОВ",
           style: TextStyle(
             color: ColorHeader,
@@ -49,14 +48,14 @@ class _Home extends State<Home> {
         ),
       ),
       drawer: Container(
-        margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
+        margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
         child: PoemChooser(onChange: redraw),
       ),
       endDrawer: Container(
-        margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
+        margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
         child: DisplayTypeChooser(onChange: redraw),
       ),
-      body: MainView(),
+      body: const MainView(),
     );
   }
 }

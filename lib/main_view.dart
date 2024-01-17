@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'Data/poem.dart';
 
 class MainView extends StatefulWidget {
+  const MainView({super.key});
+
   //final GlobalKey<_MainView> _key = GlobalKey();
   // void update(){
   //   _key.currentState!.redraw();
@@ -18,9 +20,6 @@ class _MainView extends State<MainView> {
   bool _isEditMode = false;
   final titleController = TextEditingController();
   final textController = TextEditingController();
-  // void redraw(){  // я почитал, в flutter не принято пробрасывать перерисовку в детей, поэтому setState находиться в home
-  //   setState(() {});
-  // }
 
   void _toggleEditModeOn() {
     const snackBar = SnackBar(
@@ -36,13 +35,14 @@ class _MainView extends State<MainView> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  void _toggleEditModeOff() {
+  void _toggleEditModeOff(bool save) {
     const snackBar = SnackBar(
       content: Text("Режим Просмотра"),
     );
 
     setState(() {
       _isEditMode = false;
+      if (!save) return;
       poemList.selectedPoem = Poem(
         text: textController.text.split('\n'),
         title: titleController.text,
@@ -75,7 +75,11 @@ class _MainView extends State<MainView> {
                         style: Theme.of(context).textTheme.bodyMedium,
                         maxLines: null,
                       ),
-                      IconButton(onPressed: _toggleEditModeOff, icon: const Icon(Icons.save)),
+                      Row(
+                        children: [
+                          IconButton(onPressed: () => _toggleEditModeOff(true), icon: const Icon(Icons.save)),
+                          IconButton(onPressed: () => _toggleEditModeOff(false), icon: const Icon(Icons.cancel)),
+                      ]),
                       //IconButton(onPressed: _toggleEditModeOff, icon: const Icon(Icons.cancel)),
                     ],
             ),

@@ -75,5 +75,8 @@ Map<PoemDisplayType, String> namePoemDisplayType = {
   PoemDisplayType.first7: "Первые 7 букв",
   PoemDisplayType.firstAndLast: "Первое и последнее слово",
   PoemDisplayType.first: "Первое слово",
-  PoemDisplayType.last: "Последнее слово"
+  PoemDisplayType.last: "Последнее слово",
+  PoemDisplayType.firstAndLastLetterEachWord: "Первая и последняя буква каждого слова",
+  PoemDisplayType.firstLetterEachWord: "Первая буква каждого слова",
+  PoemDisplayType.firstLetter: "Первая буква каждой строки",
 };

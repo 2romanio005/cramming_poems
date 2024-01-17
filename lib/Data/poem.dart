@@ -70,6 +70,9 @@ class _Helper {
     PoemDisplayType.firstAndLast: _firstAndLast,
     PoemDisplayType.first: _first,
     PoemDisplayType.last: _last,
+    PoemDisplayType.firstAndLastLetterEachWord: _firstAndLastLetterEachWord,
+    PoemDisplayType.firstLetterEachWord: _firstLetterEachWord,
+    PoemDisplayType.firstLetter: _firstLetter,
   };
 
   static List<String> getFormattedPoem(PoemDisplayType type, List<String> poem) {
@@ -155,6 +158,49 @@ class _Helper {
     return result;
   }
 
+  static List<String> _firstAndLastLetterEachWord(List<String> poem) {
+    return poem.map((line) =>
+        line.split(' ').map((word) {
+          if (word.length <= 2) {
+            return word;
+          }
+          String firstLetter = word[0];
+          if (RegExp(r'[^a-zA-Z0-9a-яA-Я]').hasMatch(word[word.length - 1])) {
+            String lastLetter = word[word.length - 2];
+            String hiddenCharacters = _hideString(word.substring(1, word.length - 2));
+            return firstLetter + hiddenCharacters + lastLetter + word[word.length - 1];
+          }
+          String lastLetter = word[word.length - 1];
+          String hiddenCharacters = _hideString(word.substring(1, word.length - 1));
+          return firstLetter + hiddenCharacters + lastLetter;
+        }).join('')).toList();
+  }
+
+  static List<String> _firstLetterEachWord(List<String> poem) {
+    return poem.map((line) =>
+        line.split(' ')
+            .map((word) => word.isNotEmpty
+            ? word[0] + hide * (word.length - 1)
+            : word)
+            .join(" "))
+        .toList();
+  }
+
+  static List<String> _firstLetter(List<String> poem) {
+    return poem.map((line) {
+      List<String> words = line.split(' ');
+
+      if (words.isEmpty) return line;
+      String firstWord = words[0];
+      String firstLetter = firstWord.isNotEmpty ? firstWord[0] : '';
+
+      String hiddenWords = words.skip(1).map(_hideString).join(' ');
+
+      return firstLetter + hiddenWords;
+    }).toList();
+  }
+
+
   static String _hideString(String string) => hide * string.length;
 }
 
@@ -166,4 +212,7 @@ enum PoemDisplayType {
   firstAndLast,
   first,
   last,
+  firstAndLastLetterEachWord,
+  firstLetterEachWord,
+  firstLetter
 }
