@@ -4,7 +4,6 @@ import 'package:cramming_poems/Data/poem.dart';
 import 'package:cramming_poems/Data/poem_list.dart';
 
 import 'package:cramming_poems/colors.dart';
-import 'package:cramming_poems/styles.dart';
 
 class DisplayTypeChooser extends StatefulWidget {
   const DisplayTypeChooser({super.key, required this.onChange});
@@ -75,4 +74,6 @@ Map<PoemDisplayType, String> namePoemDisplayType = {
   PoemDisplayType.halfLineRight: "Вторая половина",
   PoemDisplayType.first7: "Первые 7 букв",
   PoemDisplayType.firstAndLast: "Первое и последнее слово",
+  PoemDisplayType.first: "Первое слово",
+  PoemDisplayType.last: "Последнее слово"
 };

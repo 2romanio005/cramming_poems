@@ -68,6 +68,8 @@ class _Helper {
     PoemDisplayType.halfLineRight: _halfLineRight,
     PoemDisplayType.first7: _first7,
     PoemDisplayType.firstAndLast: _firstAndLast,
+    PoemDisplayType.first: _first,
+    PoemDisplayType.last: _last,
   };
 
   static List<String> getFormattedPoem(PoemDisplayType type, List<String> poem) {
@@ -129,6 +131,30 @@ class _Helper {
     return result;
   }
 
+  static List<String> _first(List<String> poem) {
+    List<String> result = [];
+    for (String line in poem) {
+      List<String> words = line.split(' ');
+      for (int i = 1; i < words.length; i++) {
+        words[i] = _hideString(words[i]);
+      }
+      result.add(words.join(" "));
+    }
+    return result;
+  }
+
+  static List<String> _last(List<String> poem) {
+    List<String> result = [];
+    for (String line in poem) {
+      List<String> words = line.split(' ');
+      for (int i = 0; i < words.length - 1; i++) {
+        words[i] = _hideString(words[i]);
+      }
+      result.add(words.join(" "));
+    }
+    return result;
+  }
+
   static String _hideString(String string) => hide * string.length;
 }
 
@@ -137,5 +163,7 @@ enum PoemDisplayType {
   halfLineLeft,
   halfLineRight,
   first7,
-  firstAndLast
+  firstAndLast,
+  first,
+  last,
 }
