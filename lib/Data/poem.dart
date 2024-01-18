@@ -56,10 +56,6 @@ class Poem {
 
 
 
-
-
-
-
 class _Helper {
   static String hide = "_";
   static Map<PoemDisplayType, List<String> Function(List<String>)> map = {
@@ -180,7 +176,7 @@ class _Helper {
     return poem.map((line) =>
         line.split(' ')
             .map((word) => word.isNotEmpty
-            ? word[0] + hide * (word.length - 1)
+            ? word[0] + _hideNCharacters(word.length - 1)
             : word)
             .join(" "))
         .toList();
@@ -201,7 +197,8 @@ class _Helper {
   }
 
 
-  static String _hideString(String string) => hide * string.length;
+  static String _hideString(String string) => _hideNCharacters(string.length);
+  static String _hideNCharacters(int value) => hide * value;
 }
 
 enum PoemDisplayType {

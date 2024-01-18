@@ -57,6 +57,7 @@ class _HomePageView extends State<HomePageView> {
             child: Column(
               children: (!editingModeController.isEditMode)
                   ? [
+                      IconButton(onPressed: enableEditingMode, icon: const Icon(Icons.edit)),
                       Text(poemList.selectedPoem.title, style: Theme.of(context).textTheme.titleMedium, textAlign: TextAlign.center,),
                       Text(
                         poemList.selectedFormatText.join("\n"),
@@ -66,14 +67,24 @@ class _HomePageView extends State<HomePageView> {
                       IconButton(onPressed: enableEditingMode, icon: const Icon(Icons.edit)),
                     ]
                   : [
-                      TextField(controller: editingModeController.titleController, style: Theme.of(context).textTheme.titleMedium, textAlign: TextAlign.center,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          IconButton(onPressed: cancelEditingMode, icon: const Icon(Icons.cancel)),
+                          IconButton(onPressed: completeEditingMode, icon: const Icon(Icons.save)),
+                        ],
+                      ),
+                      TextField(controller: editingModeController.titleController, style: Theme.of(context).textTheme.titleMedium, textAlign: TextAlign.center),
+                      // autofocus,
+                      // decoration:
+                      //   InputDecoration(hintText: 'both', labelText: 'both'),
                       TextField(
                         controller: editingModeController.textController,
                         style: Theme.of(context).textTheme.bodyMedium,
                         maxLines: null,
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           IconButton(onPressed: cancelEditingMode, icon: const Icon(Icons.cancel)),
                           IconButton(onPressed: completeEditingMode, icon: const Icon(Icons.save)),
