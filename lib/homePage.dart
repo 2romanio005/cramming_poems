@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:cramming_poems/Widgets/poemChooser.dart';
 import 'package:cramming_poems/Widgets/displayTypeChooser.dart';
 import 'package:cramming_poems/Data/editingModeController.dart';
-import 'package:cramming_poems/Widgets/HomePageView.dart';
+import 'package:cramming_poems/Widgets/homePageView.dart';
 
 import 'package:cramming_poems/Decoration/colors.dart';
 
