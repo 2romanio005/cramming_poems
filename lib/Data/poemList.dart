@@ -57,7 +57,8 @@ class PoemList {
       createdPoemList._listPoemFile.add(PoemFile(
         // чтобы не перезаписывать индекс выбранного стиха в память кучу раз
         poem: Poem(
-          text: ["\tВы можете добавить стихи по кнопке '+' через меню в левом верхнем углу (три полосочки)",
+          text: [
+            "\tВы можете добавить стихи по кнопке '+' через меню в левом верхнем углу (три полосочки)",
             "и выбрать способ отображения через меню в правом верхнем углу (стрелочка вниз)",
             "",
             "Почта для багов и предложений (не писать о мелочах) spamakk862@gmail.com",
@@ -119,6 +120,7 @@ class PoemList {
   }
 
   removePoemAt(int index) {
+    if (index == 0) return; // не удалять приветствующий текст
     selectedPoemIndex -= (index <= _selectedPoemIndex) ? 1 : 0;
     _listPoemFile[index].deleteFile();
     _listPoemFile.removeAt(index);
