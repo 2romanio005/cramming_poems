@@ -37,7 +37,7 @@ class _PoemChooser extends State<PoemChooser> {
                         children: [
                           Expanded(
                             child: ListTile(
-                              title: Text(poemList[index].poem.title),
+                              title: Text(poemList[poemList.length - index - 1].poem.title), // выводим в обратном порядке, старые внизу новые сврху (но хранятся они наоборот)
                               titleTextStyle: Theme.of(context).textTheme.titleSmall,
                               selected: index == poemList.selectedPoemIndex,
                               onTap: () {
