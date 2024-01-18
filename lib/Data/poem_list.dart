@@ -67,7 +67,6 @@ class PoemList {
     _selectedPoemIndex = nextNumberInFileName;
     addPoemFile(PoemFile(
       poem: Poem(
-        text: [""],
         title: "Новый стих $nextNumberInFileName",
       ),
       dataFile: File("${_directory.path}/$nextNumberInFileName.txt"),
