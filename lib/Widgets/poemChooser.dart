@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cramming_poems/Data/poemList.dart';
 import 'package:cramming_poems/Widgets/confirmationBox.dart';
+import 'package:cramming_poems/Data/editingModeController.dart';
 
 import 'package:cramming_poems/Decoration/colors.dart';
 import 'package:cramming_poems/Decoration/styles.dart';
@@ -23,7 +24,7 @@ class _PoemChooser extends State<PoemChooser> {
     return Drawer(
       child: Column(
         children: [
-          Text("Выберите стих", style: Theme.of(context).textTheme.titleMedium),
+          Text("Выберите стих", style: Theme.of(context).textTheme.titleLarge),
           Expanded(
             child: Container(
               color: ColorBackground,
@@ -40,6 +41,9 @@ class _PoemChooser extends State<PoemChooser> {
                               titleTextStyle: Theme.of(context).textTheme.titleSmall,
                               selected: index == poemList.selectedPoemIndex,
                               onTap: () {
+                                if(editingModeController.isEditMode){
+                                  editingModeController.completeEditingMode();
+                                }
                                 setState(() {
                                   poemList.selectedPoemIndex = index;
                                 });

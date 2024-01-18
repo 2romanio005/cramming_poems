@@ -14,11 +14,11 @@ class FutureBuilderHome extends StatefulWidget {
 // класс для ожидания загрузки стихов из памяти (можно грузить что угодно до основного экрана)
 class _FutureBuilderHome extends State<FutureBuilderHome> {
   Future<bool> _loading () async{
-    print("start:");
+    //print("start:");
     poemList = await PoemList.create();  // загрузка предыдущих стихов
     //print("prefin: ${poemList.selectedPoem.title}");
     //await Future.delayed(Duration(seconds: 5));
-    print("fin: ${poemList.selectedPoem.title}");
+    //print("fin: ${poemList.selectedPoem.title}");
     return true;
   }
 

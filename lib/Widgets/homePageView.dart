@@ -13,27 +13,36 @@ class HomePageView extends StatefulWidget {
 class _HomePageView extends State<HomePageView> {
   void enableEditingMode() {
     setState(() {
-      editModeController.enableEditingMode();
+      editingModeController.enableEditingMode();
     });
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      showCloseIcon: true,
+      duration: Duration(seconds: 1),
+      dismissDirection: DismissDirection.none,
       content: Text("Режим Редактирования"),
     ));
   }
 
   void completeEditingMode() {
     setState(() {
-      editModeController.completeEditingMode();
+      editingModeController.completeEditingMode();
     });
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      showCloseIcon: true,
+      duration: Duration(seconds: 1),
+      dismissDirection: DismissDirection.none,
       content: Text("Изменения сохранены"),
     ));
   }
 
   void cancelEditingMode() {
     setState(() {
-      editModeController.cancelEditingMode();
+      editingModeController.cancelEditingMode();
     });
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      showCloseIcon: true,
+      duration: Duration(seconds: 1),
+      dismissDirection: DismissDirection.none,
       content: Text("Изменения отменены"),
     ));
   }
@@ -41,13 +50,14 @@ class _HomePageView extends State<HomePageView> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
       child: Row(
         children: [
           Expanded(
             child: Column(
-              children: (!editModeController.isEditMode)
+              children: (!editingModeController.isEditMode)
                   ? [
-                      Text(poemList.selectedPoem.title, style: Theme.of(context).textTheme.titleSmall),
+                      Text(poemList.selectedPoem.title, style: Theme.of(context).textTheme.titleMedium, textAlign: TextAlign.center,),
                       Text(
                         poemList.selectedFormatText.join("\n"),
                         style: Theme.of(context).textTheme.bodyMedium,
@@ -56,17 +66,17 @@ class _HomePageView extends State<HomePageView> {
                       IconButton(onPressed: enableEditingMode, icon: const Icon(Icons.edit)),
                     ]
                   : [
-                      TextField(controller: editModeController.titleController, style: Theme.of(context).textTheme.titleSmall),
+                      TextField(controller: editingModeController.titleController, style: Theme.of(context).textTheme.titleMedium, textAlign: TextAlign.center,),
                       TextField(
-                        controller: editModeController.textController,
+                        controller: editingModeController.textController,
                         style: Theme.of(context).textTheme.bodyMedium,
                         maxLines: null,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          IconButton(onPressed: completeEditingMode, icon: const Icon(Icons.save)),
                           IconButton(onPressed: cancelEditingMode, icon: const Icon(Icons.cancel)),
+                          IconButton(onPressed: completeEditingMode, icon: const Icon(Icons.save)),
                         ],
                       ),
                     ],

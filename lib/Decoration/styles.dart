@@ -17,16 +17,21 @@ ThemeData mainTheme = ThemeData(
     // ),
 
     /// заголовок заголовков
-    titleMedium: GoogleFonts.oswald(
+    titleLarge: GoogleFonts.oswald(
       color: ColorHeader,
-      fontSize: 30,
+      fontSize: 27,
       fontWeight: FontWeight.bold,
     ),
     /// заголовок стиха
-    titleSmall: GoogleFonts.oswald(
+    titleMedium: GoogleFonts.oswald(
       // rubikMonoOne
       // quantico
       fontSize: 25,
+      fontWeight: FontWeight.bold,
+    ),
+    /// заголовок стиха в менюшке
+    titleSmall: GoogleFonts.oswald(
+      fontSize: 20,
       fontWeight: FontWeight.bold,
     ),
 
@@ -40,6 +45,7 @@ ThemeData mainTheme = ThemeData(
     labelLarge: GoogleFonts.oswald(
       color: ColorFont,
       fontSize: 25,
+      fontWeight: FontWeight.bold,
     ),
     /// текс всплывающих окон
     labelMedium: GoogleFonts.robotoMono(

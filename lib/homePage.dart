@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 import 'package:cramming_poems/Widgets/poemChooser.dart';
 import 'package:cramming_poems/Widgets/displayTypeChooser.dart';
@@ -46,7 +47,7 @@ class _Home extends State<Home> {
                 "ЗАУЧИВАНИЕ СТИХОВ",
                 style: TextStyle(
                   color: ColorFont,
-                  fontSize: (MediaQuery.of(context).size.width - 100) / 13,
+                  fontSize: min((MediaQuery.of(context).size.width - 100) / 13, 35),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -58,7 +59,7 @@ class _Home extends State<Home> {
           onSelect: redraw,
           onDelete: redraw,
           onAdd: () {
-            editModeController.enableEditingMode();
+            editingModeController.enableEditingMode();
             redraw();
           },
         ),

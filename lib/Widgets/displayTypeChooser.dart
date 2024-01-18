@@ -20,7 +20,7 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
     return Drawer(
       child: Column(
         children: [
-          Text("Выберите вид отображения", style: Theme.of(context).textTheme.titleMedium),
+          Text("Выберите отображение", style: Theme.of(context).textTheme.titleLarge),
           Expanded(
             child: Container(
               color: ColorBackground,
@@ -40,6 +40,12 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
                                 setState(() {
                                   poemList.selectedPoemDisplayType = PoemDisplayType.values[index];
                                 });
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  showCloseIcon: true,
+                                  duration: Duration(seconds: 1),
+                                  dismissDirection: DismissDirection.none,
+                                  content: Text(namePoemDisplayType[poemList.selectedPoemDisplayType]!),
+                                ));
                                 widget.onChange();
                                 Navigator.pop(context);
                               },
@@ -57,7 +63,7 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
   }
 }
 
-Map<PoemDisplayType, String> namePoemDisplayType = {
+const Map<PoemDisplayType, String> namePoemDisplayType = {
   PoemDisplayType.original: "Оригинал",
   PoemDisplayType.halfLineLeft: "Первая половина",
   PoemDisplayType.halfLineRight: "Вторая половина",

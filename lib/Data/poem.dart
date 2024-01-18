@@ -173,7 +173,7 @@ class _Helper {
           String lastLetter = word[word.length - 1];
           String hiddenCharacters = _hideString(word.substring(1, word.length - 1));
           return firstLetter + hiddenCharacters + lastLetter;
-        }).join('')).toList();
+        }).join(' ')).toList();
   }
 
   static List<String> _firstLetterEachWord(List<String> poem) {

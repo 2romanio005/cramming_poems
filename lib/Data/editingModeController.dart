@@ -32,4 +32,4 @@ class EditingModeController{
 
 }
 
-EditingModeController editModeController = EditingModeController();
+EditingModeController editingModeController = EditingModeController();

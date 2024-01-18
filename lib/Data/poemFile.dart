@@ -14,7 +14,7 @@ class PoemFile {
     if (dataFile.existsSync()) {
       _readFromFile();
     } else {
-      print("Writing: $path");
+      //print("Writing: $path");
       _writeInFile();
     }
   }
@@ -29,14 +29,18 @@ class PoemFile {
       content.removeLast(); // удаляем название из основного текста
       _poem.text = content; // прочитали оригинал
       _poem.title = newTitle; // обязательно после запис оргинала
-      print("Reading: ${_dataFile.path} as $newTitle");
+      //print("Reading: ${_dataFile.path} as $newTitle");
     } catch (error) {
       print(error);
     }
   }
 
   Future<void> _writeInFile() async {
-    _dataFile.writeAsString("${poem.text.join("\n")}\n${poem.title}"); // записываем в файл оригинал текста и в конце - название
+    try {
+      _dataFile.writeAsString("${poem.text.join("\n")}\n${poem.title}"); // записываем в файл оригинал текста и в конце - название
+    } catch(error){
+      print(error);
+    }
   }
 
   void deleteFile() {
