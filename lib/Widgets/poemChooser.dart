@@ -23,13 +23,7 @@ class _PoemChooser extends State<PoemChooser> {
     return Drawer(
       child: Column(
         children: [
-          Text(
-            "Выберите стих",
-            style: TextStyle(
-              color: ColorHeader,
-              fontSize: 30,
-            ),
-          ),
+          Text("Выберите стих", style: Theme.of(context).textTheme.titleMedium),
           Expanded(
             child: Container(
               color: ColorBackground,
@@ -42,12 +36,8 @@ class _PoemChooser extends State<PoemChooser> {
                         children: [
                           Expanded(
                             child: ListTile(
-                              title: Text(
-                                poemList[index].poem.title,
-                                style: TextStyle(
-                                  fontSize: 25,
-                                ),
-                              ),
+                              title: Text(poemList[index].poem.title),
+                              titleTextStyle: Theme.of(context).textTheme.titleSmall,
                               selected: index == poemList.selectedPoemIndex,
                               onTap: () {
                                 setState(() {
@@ -64,7 +54,7 @@ class _PoemChooser extends State<PoemChooser> {
                             onPressed: () async {
                               await confirmationBox(
                                   context: context,
-                                  text: 'Удалить стих?',
+                                  title: 'Удалить стих?',
                                   textOK: 'Удалить',
                                   textOFF: 'Отмена',
                                   functionOK: () {
@@ -104,7 +94,7 @@ class _PoemChooser extends State<PoemChooser> {
                   onPressed: () async {
                     await confirmationBox(
                         context: context,
-                        text: 'Удалить все стихи?',
+                        title: 'Удалить все стихи?',
                         textOK: 'Удалить все',
                         textOFF: 'Отмена',
                         functionOK: () {

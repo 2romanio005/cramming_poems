@@ -9,45 +9,67 @@ ThemeData mainTheme = ThemeData(
     brightness: Brightness.light,
   ),
   textTheme: TextTheme(
-    // TODO: Выбрать нормальные шрифты и размер текста
-    titleLarge: GoogleFonts.oswald(
+    /// название окна
+    headlineMedium: GoogleFonts.oswald(
+      color: ColorFont,
       fontSize: 30,
       fontWeight: FontWeight.bold,
     ),
-    bodyLarge: GoogleFonts.oswald(
+
+    /// заголовок заголовков
+    titleMedium: GoogleFonts.oswald(
+      color: ColorHeader,
+      fontSize: 30,
+      fontWeight: FontWeight.bold,
+    ),
+    /// заголовок стиха
+    titleSmall: GoogleFonts.oswald(
       // rubikMonoOne
       // quantico
       fontSize: 25,
       fontWeight: FontWeight.bold,
     ),
+
+    /// осоновной текст стиха
     bodyMedium: GoogleFonts.robotoMono(
       // anonymousPro
       fontSize: 16,
     ),
-    bodySmall:  GoogleFonts.robotoMono(
-      fontSize: 10,
+
+    /// заголовок всплывающих окон
+    labelLarge: GoogleFonts.oswald(
+      color: ColorFont,
+      fontSize: 25,
+    ),
+    /// текс всплывающих окон
+    labelMedium: GoogleFonts.robotoMono(
+      fontSize: 16,
+    ),
+    /// текст на кнопках
+    labelSmall: GoogleFonts.robotoMono(
+      color: ColorFont,
+      fontSize: 20,
     ),
   ),
 );
 
+/// кнопка несогласия (краснеет)
 ButtonStyle buttonStyleOFF = IconButton.styleFrom(
   backgroundColor: ColorButtonBackground,
   hoverColor: ColorButtonHover,
   foregroundColor: ColorButtonForeground,
   highlightColor: ColorButtonPressedOFF,
 );
-
+/// кнопка согласия (зеленеет)
 ButtonStyle buttonStyleOK = IconButton.styleFrom(
   backgroundColor: ColorButtonBackground,
   hoverColor: ColorButtonHover,
   foregroundColor: ColorButtonForeground,
   highlightColor: ColorButtonPressedOK,
 );
-
+/// обычная кнопка (сереет)
 ButtonStyle buttonStyleDefault = IconButton.styleFrom(
   backgroundColor: ColorButtonBackground,
   hoverColor: ColorButtonHover,
   foregroundColor: ColorButtonForeground,
 );
-
-// TODO перенеси свои стили, а то я боюсь их трогать

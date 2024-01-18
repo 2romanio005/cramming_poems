@@ -20,13 +20,7 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
     return Drawer(
       child: Column(
         children: [
-          Text(
-            "Выберите вид отображения",
-            style: TextStyle(
-              color: ColorHeader,
-              fontSize: 30,
-            ),
-          ),
+          Text("Выберите вид отображения", style: Theme.of(context).textTheme.titleMedium),
           Expanded(
             child: Container(
               color: ColorBackground,
@@ -39,12 +33,8 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
                         children: [
                           Expanded(
                             child: ListTile(
-                              title: Text(
-                                namePoemDisplayType[PoemDisplayType.values[index]]!,
-                                style: TextStyle(
-                                  fontSize: 25,
-                                ),
-                              ),
+                              title: Text(namePoemDisplayType[PoemDisplayType.values[index]]!),
+                              titleTextStyle: Theme.of(context).textTheme.titleSmall,
                               selected: index == poemList.selectedPoemDisplayType.index,
                               onTap: () {
                                 setState(() {
@@ -66,7 +56,6 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
     );
   }
 }
-
 
 Map<PoemDisplayType, String> namePoemDisplayType = {
   PoemDisplayType.original: "Оригинал",

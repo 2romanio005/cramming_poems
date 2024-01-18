@@ -2,6 +2,8 @@ import 'package:cramming_poems/Data/poemList.dart';
 import 'package:flutter/material.dart';
 import 'package:cramming_poems/homePage.dart';
 
+import 'package:cramming_poems/Decoration/styles.dart';
+
 class FutureBuilderHome extends StatefulWidget {
   const FutureBuilderHome({super.key});
 
@@ -51,17 +53,17 @@ class _FutureBuilderHome extends State<FutureBuilderHome> {
               ),
             );
           } else {
-            children = const Center(
+            children = Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(
+                  const SizedBox(
                     width: 60,
                     height: 60,
                     child: CircularProgressIndicator(),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 16),
+                    padding: const EdgeInsets.only(top: 16),
                     child: Text('Загрузка стихов...'),
                   ),
                 ],

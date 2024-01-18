@@ -39,13 +39,7 @@ class _Home extends State<Home> {
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         ),
-        title: Text(
-          "ЗАУЧИВАНИЕ СТИХОВ",
-          style: TextStyle(
-            color: ColorHeader,
-            fontSize: 28,
-          ),
-        ),
+        title: Text("ЗАУЧИВАНИЕ СТИХОВ", style: Theme.of(context).textTheme.headlineMedium),
       ),
       drawer: Container(
         margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),

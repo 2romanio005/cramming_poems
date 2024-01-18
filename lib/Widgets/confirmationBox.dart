@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:cramming_poems/Decoration/colors.dart';
 import 'package:cramming_poems/Decoration/styles.dart';
 
-
 Future<void> confirmationBox({
   required BuildContext context,
-  required String text,
+  String title = "",
+  String text = "",
   required String textOK,
   required String textOFF,
   void Function()? functionOK,
@@ -20,21 +20,14 @@ Future<void> confirmationBox({
         return AlertDialog(
           insetPadding: EdgeInsets.zero,
           actionsAlignment: MainAxisAlignment.spaceAround,
-          title: Text(text,
-              style: TextStyle(
-                color: ColorFont,
-                fontSize: 25,
-              )),
+          title: Text(title),
+          titleTextStyle: Theme.of(context).textTheme.labelLarge,
+          content: Text(text),
+          contentTextStyle: Theme.of(context).textTheme.labelMedium,
           actions: [
             ElevatedButton(
               style: buttonStyleOFF,
-              child: Text(
-                textOFF,
-                style: TextStyle(
-                  color: ColorFont,
-                  fontSize: 20,
-                ),
-              ),
+              child: Text(textOFF, style: Theme.of(context).textTheme.labelSmall),
               onPressed: () {
                 functionOFF!();
                 Navigator.of(context).pop();
@@ -42,13 +35,7 @@ Future<void> confirmationBox({
             ),
             ElevatedButton(
               style: buttonStyleOK,
-              child: Text(
-                textOK,
-                style: TextStyle(
-                  color: ColorFont,
-                  fontSize: 20,
-                ),
-              ),
+              child: Text(textOK, style: Theme.of(context).textTheme.labelSmall),
               onPressed: () {
                 functionOK!();
                 Navigator.of(context).pop();
