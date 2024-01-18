@@ -1,44 +1,16 @@
-import 'package:cramming_poems/Data/poem_list.dart';
 import 'package:flutter/material.dart';
 
-import 'Data/poem.dart';
+import 'package:cramming_poems/Data/poem_list.dart';
+import 'package:cramming_poems/Data/editModeController.dart';
 
 class MainView extends StatefulWidget {
-  //final GlobalKey<_MainView> _key = GlobalKey();
-  // void update(){
-  //   _key.currentState!.redraw();
-  // }
-
-  /// это всё тут, потому что изменяется извне (при новом стихе надо включать режим редактирования) если найдёшь сопсоб запихнуть в _MainView то давай
-  final titleController = TextEditingController();
-  final textController = TextEditingController();
-  bool _isEditMode = false;
-
-  void toggleEditModeOn() {
-    print("toggleEditModeOn ${poemList.selectedPoem.title}");
-    _isEditMode = true;
-    titleController.text = poemList.selectedPoem.title;
-    textController.text = poemList.selectedPoem.text.join("\n");
-  }
-
-  void toggleEditModeOff() {
-    _isEditMode = false;
-    poemList.selectedPoem = Poem(
-      text: textController.text.split('\n'),
-      title: titleController.text,
-    ); // заменяем старый стих на новый
-  }
+  const MainView({super.key});
 
   @override
   State<StatefulWidget> createState() => _MainView();
 }
 
 class _MainView extends State<MainView> {
-  // Poem selectedPoemCopy = Poem.copy(poemList.selectedPoem);  // работать мы будет с копией
-  // void redraw(){  // я почитал, в flutter не принято пробрасывать перерисовку в детей, поэтому setState находиться в home
-  //   setState(() {});
-  // }
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -46,9 +18,8 @@ class _MainView extends State<MainView> {
         children: [
           Expanded(
             child: Column(
-              children: (!widget._isEditMode)
+              children: (!editModeController.isEditMode)
                   ? [
-                      // оставь так скобочки, так удобнее тестить, удаляй такие коментарии когда прочитаешь
                       Text(poemList.selectedPoem.title, style: Theme.of(context).textTheme.bodyLarge),
                       Text(
                         poemList.selectedFormatText.join("\n"),
@@ -59,7 +30,7 @@ class _MainView extends State<MainView> {
                           onPressed: () {
                             // TODO вынеси в отдельны метод, если не лень
                             setState(() {
-                              widget.toggleEditModeOn();
+                              editModeController.toggleEditModeOn();
                             });
                             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                               content: Text("Режим Редактирования"),
@@ -68,9 +39,9 @@ class _MainView extends State<MainView> {
                           icon: const Icon(Icons.edit)),
                     ]
                   : [
-                      TextField(controller: widget.titleController, style: Theme.of(context).textTheme.bodyLarge),
+                      TextField(controller: editModeController.titleController, style: Theme.of(context).textTheme.bodyLarge),
                       TextField(
-                        controller: widget.textController,
+                        controller: editModeController.textController,
                         style: Theme.of(context).textTheme.bodyMedium,
                         maxLines: null,
                       ),
@@ -78,7 +49,7 @@ class _MainView extends State<MainView> {
                           onPressed: () {
                             // TODO вынеси в отдельны метод, если не лень
                             setState(() {
-                              widget.toggleEditModeOff();
+                              editModeController.toggleEditModeOff();
                             });
                             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                               content: Text("Режим Просмотра"),

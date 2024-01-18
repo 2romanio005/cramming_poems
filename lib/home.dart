@@ -1,8 +1,8 @@
-import 'package:cramming_poems/Data/poem_list.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cramming_poems/poemChooser.dart';
 import 'package:cramming_poems/displayTypeChooser.dart';
+import 'package:cramming_poems/Data/editModeController.dart';
 import 'package:cramming_poems/main_view.dart';
 
 import 'package:cramming_poems/colors.dart';
@@ -15,8 +15,6 @@ class Home extends StatefulWidget {
 }
 
 class _Home extends State<Home> {
-  MainView mainView = MainView();
-
   void redraw() {
     setState(() {});
   }
@@ -56,7 +54,7 @@ class _Home extends State<Home> {
           onSelect: redraw,
           onDelete: redraw,
           onAdd: () {
-            mainView.toggleEditModeOn();
+            editModeController.toggleEditModeOn();
             redraw();
             print("Add");
           },
@@ -66,7 +64,7 @@ class _Home extends State<Home> {
         margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
         child: DisplayTypeChooser(onChange: redraw),
       ),
-      body: mainView,
+      body: MainView(),
     );
   }
 }
