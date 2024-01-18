@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cramming_poems/future_builder.dart';
+
 import 'package:cramming_poems/styles.dart';
 
 
@@ -13,5 +14,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: const FutureBuilderHome(),
       theme: mainTheme,
+    );
   }
 }
