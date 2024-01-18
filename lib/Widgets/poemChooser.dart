@@ -24,7 +24,7 @@ class _PoemChooser extends State<PoemChooser> {
     return Drawer(
       child: Column(
         children: [
-          Text("Выберите стих", style: Theme.of(context).textTheme.titleLarge),
+          Text("Выберите стих", style: Theme.of(context).textTheme.titleLarge, textAlign: TextAlign.center,),
           Expanded(
             child: Container(
               color: ColorBackground,

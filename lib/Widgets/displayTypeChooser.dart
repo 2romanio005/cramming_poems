@@ -20,7 +20,7 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
     return Drawer(
       child: Column(
         children: [
-          Text("Выберите отображение", style: Theme.of(context).textTheme.titleLarge),
+          Text("Выберите отображение", style: Theme.of(context).textTheme.titleLarge, textAlign: TextAlign.center,),
           Expanded(
             child: Container(
               color: ColorBackground,
