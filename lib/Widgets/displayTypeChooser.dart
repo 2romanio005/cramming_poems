@@ -65,8 +65,8 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
 
 const Map<PoemDisplayType, String> namePoemDisplayType = {
   PoemDisplayType.original: "Оригинал",
-  PoemDisplayType.halfLineLeft: "Первая половина",
-  PoemDisplayType.halfLineRight: "Вторая половина",
+  PoemDisplayType.halfLineLeft: "Левая половина",
+  PoemDisplayType.halfLineRight: "Правая половина",
   PoemDisplayType.first7: "Первые 7 букв",
   PoemDisplayType.firstAndLast: "Первое и последнее слово",
   PoemDisplayType.first: "Первое слово",
