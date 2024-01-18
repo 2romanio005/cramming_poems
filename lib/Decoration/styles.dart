@@ -10,11 +10,11 @@ ThemeData mainTheme = ThemeData(
   ),
   textTheme: TextTheme(
     /// название окна
-    headlineMedium: GoogleFonts.oswald(
-      color: ColorFont,
-      fontSize: 30,
-      fontWeight: FontWeight.bold,
-    ),
+    // headlineMedium: GoogleFonts.oswald(
+    //   color: ColorFont,
+    //   //fontSize: ,
+    //   fontWeight: FontWeight.bold,
+    // ),
 
     /// заголовок заголовков
     titleMedium: GoogleFonts.oswald(

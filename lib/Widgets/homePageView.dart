@@ -47,7 +47,7 @@ class _HomePageView extends State<HomePageView> {
             child: Column(
               children: (!editModeController.isEditMode)
                   ? [
-                      Text(poemList.selectedPoem.title, style: Theme.of(context).textTheme.titleMedium),
+                      Text(poemList.selectedPoem.title, style: Theme.of(context).textTheme.titleSmall),
                       Text(
                         poemList.selectedFormatText.join("\n"),
                         style: Theme.of(context).textTheme.bodyMedium,
