@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:cramming_poems/poemChooser.dart';
-import 'package:cramming_poems/displayTypeChooser.dart';
-import 'package:cramming_poems/Data/editModeController.dart';
-import 'package:cramming_poems/main_view.dart';
+import 'package:cramming_poems/Widgets/poemChooser.dart';
+import 'package:cramming_poems/Widgets/displayTypeChooser.dart';
+import 'package:cramming_poems/Data/editingModeController.dart';
+import 'package:cramming_poems/HomePageView.dart';
 
-import 'package:cramming_poems/colors.dart';
+import 'package:cramming_poems/Decoration/colors.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -62,7 +62,7 @@ class _Home extends State<Home> {
         margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
         child: DisplayTypeChooser(onChange: redraw),
       ),
-      body: MainView(),
+      body: HomePageView(), // не добавлять const а то всё перестаёт обновляться
     );
   }
 }

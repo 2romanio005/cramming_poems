@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:cramming_poems/Data/poem.dart';
-import 'package:cramming_poems/Data/poem_list.dart';
+import 'package:cramming_poems/Data/poemList.dart';
 
-import 'package:cramming_poems/colors.dart';
+import 'package:cramming_poems/Decoration/colors.dart';
 
 class DisplayTypeChooser extends StatefulWidget {
   const DisplayTypeChooser({super.key, required this.onChange});

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'package:cramming_poems/Data/poem_list.dart';
-import 'package:cramming_poems/Data/editModeController.dart';
+import 'package:cramming_poems/Data/poemList.dart';
+import 'package:cramming_poems/Data/editingModeController.dart';
 
-class MainView extends StatefulWidget {
-  const MainView({super.key});
+class HomePageView extends StatefulWidget {
+  const HomePageView({super.key});
 
   @override
-  State<StatefulWidget> createState() => _MainView();
+  State<StatefulWidget> createState() => _HomePageView();
 }
 
-class _MainView extends State<MainView> {
+class _HomePageView extends State<HomePageView> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

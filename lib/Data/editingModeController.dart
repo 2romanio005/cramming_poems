@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:cramming_poems/Data/poem_list.dart';
+import 'package:cramming_poems/Data/poemList.dart';
 import 'package:cramming_poems/Data/poem.dart';
 
-class EditModeController{
+class EditingModeController{
   final titleController = TextEditingController();
   final textController = TextEditingController();
   bool _isEditMode = false;
@@ -32,4 +32,4 @@ class EditModeController{
 
 }
 
-EditModeController editModeController = EditModeController();
+EditingModeController editModeController = EditingModeController();

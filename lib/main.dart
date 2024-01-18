@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:cramming_poems/future_builder.dart';
+import 'package:cramming_poems/futureBuilderHome.dart';
 
-import 'package:cramming_poems/styles.dart';
+import 'package:cramming_poems/Decoration/styles.dart';
 
 
 void main() => runApp(const MyApp());

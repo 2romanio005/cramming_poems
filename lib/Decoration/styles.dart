@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:cramming_poems/colors.dart';
+import 'package:cramming_poems/Decoration/colors.dart';
 
 ThemeData mainTheme = ThemeData(
   colorScheme: ColorScheme.fromSeed(

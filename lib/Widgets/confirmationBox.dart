@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:cramming_poems/colors.dart';
-import 'package:cramming_poems/styles.dart';
+import 'package:cramming_poems/Decoration/colors.dart';
+import 'package:cramming_poems/Decoration/styles.dart';
 
 
-Future<void> confirmation_box({
+Future<void> confirmationBox({
   required BuildContext context,
   required String text,
   required String textOK,

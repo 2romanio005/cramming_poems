@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:cramming_poems/Data/poem_list.dart';
-import 'package:cramming_poems/Widgets/confirmation_box.dart';
+import 'package:cramming_poems/Data/poemList.dart';
+import 'package:cramming_poems/Widgets/confirmationBox.dart';
 
-import 'package:cramming_poems/colors.dart';
-import 'package:cramming_poems/styles.dart';
+import 'package:cramming_poems/Decoration/colors.dart';
+import 'package:cramming_poems/Decoration/styles.dart';
 
 class PoemChooser extends StatefulWidget {
   const PoemChooser({super.key, required this.onSelect, required this.onDelete, required this.onAdd});
@@ -62,7 +62,7 @@ class _PoemChooser extends State<PoemChooser> {
                             style: buttonStyleOFF,
                             icon: const Icon(Icons.delete_forever_sharp),
                             onPressed: () async {
-                              await confirmation_box(
+                              await confirmationBox(
                                   context: context,
                                   text: 'Удалить стих?',
                                   textOK: 'Удалить',
@@ -102,7 +102,7 @@ class _PoemChooser extends State<PoemChooser> {
                   style: buttonStyleOFF,
                   icon: const Icon(Icons.delete_forever_sharp),
                   onPressed: () async {
-                    await confirmation_box(
+                    await confirmationBox(
                         context: context,
                         text: 'Удалить все стихи?',
                         textOK: 'Удалить все',

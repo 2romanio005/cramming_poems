@@ -1,6 +1,6 @@
-import 'package:cramming_poems/Data/poem_list.dart';
+import 'package:cramming_poems/Data/poemList.dart';
 import 'package:flutter/material.dart';
-import 'package:cramming_poems/home.dart';
+import 'package:cramming_poems/homePage.dart';
 
 class FutureBuilderHome extends StatefulWidget {
   const FutureBuilderHome({super.key});
