@@ -28,7 +28,7 @@ class _Home extends State<Home> {
           actions: [
             Builder(
               builder: (context) => IconButton(
-                icon: const Icon(Icons.arrow_drop_down),
+                icon: const Icon(Icons.visibility),
                 onPressed: () => Scaffold.of(context).openEndDrawer(),
                 tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
               ),
@@ -44,10 +44,11 @@ class _Home extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "ЗАУЧИВАНИЕ СТИХОВ",
+                "Запоминаем стихотворение",
                 style: TextStyle(
+                  fontFamily: "Oswald",
                   color: ColorFont,
-                  fontSize: min((MediaQuery.of(context).size.width - 100) / 13, 35),
+                  fontSize: min((MediaQuery.of(context).size.width - 100) / 12, 30),
                   fontWeight: FontWeight.bold,
                 ),
               ),

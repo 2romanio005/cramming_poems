@@ -28,12 +28,12 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
                   itemCount: HandlerPoemsDisplayTypes.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Card(
-                      child: Row(
+                      child: Row(  // только для возможности использовать Expanded
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
                             child: ListTile(
-                              title: Text(HandlerPoemsDisplayTypes.getNamePoemDisplayType(PoemDisplayType.values[index])),
+                              title: Text(HandlerPoemsDisplayTypes.getNamePoemDisplayType(PoemDisplayType.values[index]), textAlign: TextAlign.center),
                               titleTextStyle: Theme.of(context).textTheme.titleSmall,
                               selected: index == poemList.selectedPoemDisplayType.index,
                               onTap: () {

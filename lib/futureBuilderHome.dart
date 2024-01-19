@@ -64,7 +64,7 @@ class _FutureBuilderHome extends State<FutureBuilderHome> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 16),
-                    child: Text('Загрузка стихов...'),
+                    child: Text('Загрузка стихотворений...'),
                   ),
                 ],
               ),

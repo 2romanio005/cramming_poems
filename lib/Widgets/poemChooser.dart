@@ -44,7 +44,7 @@ class _PoemChooser extends State<PoemChooser> {
                         children: [
                           Expanded(
                             child: ListTile(
-                              title: Text(poemList[index].poem.title),
+                              title: Text(poemList[index].poem.title, textAlign: TextAlign.center),
                               titleTextStyle: Theme.of(context).textTheme.titleSmall,
                               selected: index == poemList.selectedPoemIndex,
                               onTap: () {
@@ -66,6 +66,7 @@ class _PoemChooser extends State<PoemChooser> {
                               await confirmationBox(
                                   context: context,
                                   title: 'Удалить стих?',
+                                  text: "Стихотворение \"${poemList[index].poem.title}\" будет удалено.",
                                   textOK: 'Удалить',
                                   textOFF: 'Отмена',
                                   functionOK: () {
@@ -105,7 +106,8 @@ class _PoemChooser extends State<PoemChooser> {
                   onPressed: () async {
                     await confirmationBox(
                         context: context,
-                        title: 'Удалить все стихи?',
+                        title: 'Удалить все стихотворения?',
+                        text: "Все стихотворения будут удалены.",
                         textOK: 'Удалить все',
                         textOFF: 'Отмена',
                         functionOK: () {

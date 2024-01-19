@@ -22,36 +22,37 @@ ThemeData mainTheme = ThemeData(
       fontSize: 25,
       fontWeight: FontWeight.bold,
     ),
-    /// заголовок стиха в менюшке
+    /// заголовки в менюшках
     titleSmall: TextStyle(
       fontFamily: "Oswald",
       fontSize: 20,
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.w600,
     ),
 
     /// осоновной текст стиха
     bodyMedium: TextStyle(
       fontFamily: "Consolas",
-      fontSize: 16,
+      fontSize: 18,
     ),
 
     /// заголовок всплывающих окон
     labelLarge: TextStyle(
       fontFamily: "Oswald",
       color: ColorFont,
-      fontSize: 25,
-      fontWeight: FontWeight.bold,
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
     ),
     /// текс всплывающих окон
     labelMedium: TextStyle(
       fontFamily: "Consolas",
-      fontSize: 16,
+      fontSize: 18,
     ),
     /// текст на кнопках
     labelSmall: TextStyle(
       fontFamily: "Consolas",
-      color: ColorFont,
-      fontSize: 20,
+      //color: ColorFont,
+      fontSize: 18,
+      fontWeight: FontWeight.w600
     ),
   ),
 );

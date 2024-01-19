@@ -17,8 +17,12 @@ class Poem {
   /// line of textLines
   set title(String newTitle) {
     if (newTitle.isEmpty) {
-      _title = _text[0];
-      return;
+      for (String line in _text){
+        if(line.isNotEmpty){
+          _title = line;
+          return;
+        }
+      }
     }
     _title = newTitle;
   }

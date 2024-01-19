@@ -83,7 +83,8 @@ class _HomePageView extends State<HomePageView> {
                         controller: editingModeController.titleController,
                         style: Theme.of(context).textTheme.titleMedium,
                         textAlign: TextAlign.center,
-                        decoration: const InputDecoration(hintText: 'Названием будет первая строка стиха'),
+                        maxLines: null,
+                        decoration: const InputDecoration(hintText: 'Названием станет первая строка стихотворения'),
                       ),
                       // autofocus,
                       // decoration:
@@ -91,7 +92,7 @@ class _HomePageView extends State<HomePageView> {
                       TextField(
                         controller: editingModeController.textController,
                         style: Theme.of(context).textTheme.bodyMedium,
-                        decoration: const InputDecoration(hintText: 'Вставьте или напишите сюда текст стиха...'),
+                        decoration: const InputDecoration(hintText: 'Вставьте текст стихотворение.', ),
                         maxLines: null,
                       ),
                       Row(

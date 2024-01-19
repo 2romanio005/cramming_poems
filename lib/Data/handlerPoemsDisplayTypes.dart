@@ -24,7 +24,7 @@ enum PoemDisplayType {
 
 
 class HandlerPoemsDisplayTypes {
-  static String hidden = "_";
+  static String hidden = ".";
   static final Map<PoemDisplayType, _OnePoemDisplayType> _map = {
     PoemDisplayType.original: _OnePoemDisplayType(name: "Целиком", lineHandler: (poem) => poem),
     PoemDisplayType.halfLineLeft: _OnePoemDisplayType(name: "Левая половина", lineHandler: _halfLineLeft),
