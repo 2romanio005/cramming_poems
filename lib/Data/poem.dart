@@ -125,7 +125,15 @@ class _Helper {
     List<String> result = [];
     for (String line in poem) {
       List<String> words = line.split(' ');
-      for (int i = 1; i < words.length - 1; i++) {
+      int start = 0, fin = words.length;
+      while(start < fin && words[start].isEmpty) {
+        start++;
+      }
+      while(fin > start && words[fin - 1].isEmpty) {
+        fin--;
+      }
+
+      for (int i = start + 1; i < fin - 1; i++) {
         words[i] = _hideString(words[i]);
       }
       result.add(words.join(" "));
@@ -137,7 +145,12 @@ class _Helper {
     List<String> result = [];
     for (String line in poem) {
       List<String> words = line.split(' ');
-      for (int i = 1; i < words.length; i++) {
+      int start = 0;
+      while(start < words.length && words[start].isEmpty) {
+        start++;
+      }
+
+      for (int i = start + 1; i < words.length; i++) {
         words[i] = _hideString(words[i]);
       }
       result.add(words.join(" "));
@@ -149,7 +162,12 @@ class _Helper {
     List<String> result = [];
     for (String line in poem) {
       List<String> words = line.split(' ');
-      for (int i = 0; i < words.length - 1; i++) {
+      int fin = words.length;
+      while(fin > 0 && words[fin - 1].isEmpty) {
+        fin--;
+      }
+
+      for (int i = 0; i < fin - 1; i++) {
         words[i] = _hideString(words[i]);
       }
       result.add(words.join(" "));
