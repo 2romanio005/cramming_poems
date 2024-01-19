@@ -54,19 +54,18 @@ class PoemList {
     }
 
     if (createdPoemList._listPoemFile.isEmpty) {
-      createdPoemList._listPoemFile.add(createdPoemList._getWelcomePlugPoemFile());
+      createdPoemList._addWelcomePlugPoemFile();
     }
     createdPoemList._listPoemFile.sort((a, b) => a.nextNumberInFileName.compareTo(b.nextNumberInFileName));
 
     return createdPoemList;
   }
 
-  PoemFile _getWelcomePlugPoemFile() {
-    return PoemFile(
-      poem: Poem(
+  Poem _getWelcomePlugPoem() {
+    return Poem(
         text: [
-          "    Вы можете добавить стихи по кнопке '+' через меню в левом верхнем углу (три полосочки)",
-          "и выбрать способ отображения через меню в правом верхнем углу (стрелочка вниз)",
+          "    Вы можете добавить стихи по кнопке '+' через меню в левом верхнем углу (три полосочки) и редактировать их по нажатию на иконку ручки (сверху по центру).",
+          "    Выбор способов отображения стиха в меню в правом верхнем углу (стрелочка вниз).",
           "",
           "",
           "",
@@ -83,10 +82,9 @@ class PoemList {
           "",
           "",
           "",
-          "",
           "От двух Улиточек!\t2024 год.",
           "",
-          "Почта для багов и предложений (не писать о мелочах) spamakk862@gmail.com",
+          "Почта для обратной связи: spamakk862@gmail.com",
         ],
         // "(¯`O´¯)",
         // "*./ | \\ .*",
@@ -101,9 +99,14 @@ class PoemList {
         //   "' ' • ♫♫♫*♥*♫♫♫• * ' '",
         //   "..x♥x"
         title: "Добро пожаловать в Cramming poems!",
-      ),
+      );
+  }
+
+  _addWelcomePlugPoemFile(){
+    _listPoemFile.add(PoemFile(
+      poem: _getWelcomePlugPoem(),
       dataFile: File("${_directory.path}/0.txt"),
-    );
+    ));
   }
 
   addPoemFile(PoemFile poemFile) {
@@ -124,8 +127,7 @@ class PoemList {
 
   removePoemAt(int index) {
     if (index == 0) {
-      _listPoemFile[0].deleteFile();
-      _listPoemFile[0] = _getWelcomePlugPoemFile(); // перезаписать приветствуюший текст с оригинала
+      _listPoemFile[0].poem = _getWelcomePlugPoem(); // перезаписать приветствуюший текст с оригинала
       return;
     }
     selectedPoemIndex -= (index <= _selectedPoemIndex) ? 1 : 0;
@@ -142,7 +144,7 @@ class PoemList {
       poem.deleteFile();
     }
     _listPoemFile.clear();
-    _listPoemFile.add(_getWelcomePlugPoemFile());
+    _addWelcomePlugPoemFile();
   }
 
   PoemFile operator [](int index) {

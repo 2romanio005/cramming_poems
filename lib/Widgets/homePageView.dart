@@ -68,7 +68,7 @@ class _HomePageView extends State<HomePageView> {
                         style: Theme.of(context).textTheme.bodyMedium,
                         overflow: TextOverflow.clip,
                       ),
-                      IconButton(onPressed: enableEditingMode, icon: const Icon(Icons.edit)),
+                      IconButton(onPressed: enableEditingMode, icon: const Icon(Icons.edit_outlined)),
                     ]
                   : [
                       Row(
