@@ -7,10 +7,10 @@ class Poem {
     this.title = title; // обязательно после записи  _text
   }
 
-  static Poem copy(Poem original){
+  static Poem copy(Poem original) {
     return Poem(
-        text: original._text,
-        title: original._title,
+      text: original._text,
+      title: original._title,
     );
   }
 
@@ -40,21 +40,13 @@ class Poem {
     return _text;
   }
 
-
   List<String> getFormattedText(PoemDisplayType type) {
     return _Helper.getFormattedPoem(type, _text);
   }
 
-
   late String _title;
   late List<String> _text;
 }
-
-
-
-
-
-
 
 class _Helper {
   static String hide = "_";
@@ -107,14 +99,12 @@ class _Helper {
 
   static List<String> _first7(List<String> poem) {
     return poem.map((line) {
-      if (line.length <= 7) {
-        return line;
-      } else {
-        int numberOfCharacters = min(7, line.length);
-        String preservedSpaces = line.substring(0, numberOfCharacters) +
-            line.substring(numberOfCharacters).replaceAll(RegExp(r'[^ ]'), hide);
-        return preservedSpaces;
+      int numberOfCharacters = 0;
+      for (int found = 0; found < 7 && numberOfCharacters < line.length; numberOfCharacters++) {
+        found += line[numberOfCharacters] == ' ' ? 0 : 1;
       }
+      String preservedSpaces = line.substring(0, numberOfCharacters) + line.substring(numberOfCharacters).replaceAll(RegExp(r'[^ ]'), hide);
+      return preservedSpaces;
     }).toList();
   }
 
@@ -155,31 +145,26 @@ class _Helper {
   }
 
   static List<String> _firstAndLastLetterEachWord(List<String> poem) {
-    return poem.map((line) =>
-        line.split(' ').map((word) {
-          if (word.length <= 2) {
-            return word;
-          }
-          String firstLetter = word[0];
-          if (RegExp(r'[^a-zA-Z0-9a-яA-Я]').hasMatch(word[word.length - 1])) {
-            String lastLetter = word[word.length - 2];
-            String hiddenCharacters = _hideString(word.substring(1, word.length - 2));
-            return firstLetter + hiddenCharacters + lastLetter + word[word.length - 1];
-          }
-          String lastLetter = word[word.length - 1];
-          String hiddenCharacters = _hideString(word.substring(1, word.length - 1));
-          return firstLetter + hiddenCharacters + lastLetter;
-        }).join(' ')).toList();
+    return poem
+        .map((line) => line.split(' ').map((word) {
+              if (word.length <= 2) {
+                return word;
+              }
+              String firstLetter = word[0];
+              if (RegExp(r'[^a-zA-Z0-9a-яA-Я]').hasMatch(word[word.length - 1])) {
+                String lastLetter = word[word.length - 2];
+                String hiddenCharacters = _hideString(word.substring(1, word.length - 2));
+                return firstLetter + hiddenCharacters + lastLetter + word[word.length - 1];
+              }
+              String lastLetter = word[word.length - 1];
+              String hiddenCharacters = _hideString(word.substring(1, word.length - 1));
+              return firstLetter + hiddenCharacters + lastLetter;
+            }).join(' '))
+        .toList();
   }
 
   static List<String> _firstLetterEachWord(List<String> poem) {
-    return poem.map((line) =>
-        line.split(' ')
-            .map((word) => word.isNotEmpty
-            ? word[0] + _hideNCharacters(word.length - 1)
-            : word)
-            .join(" "))
-        .toList();
+    return poem.map((line) => line.split(' ').map((word) => word.isNotEmpty ? word[0] + _hideNCharacters(word.length - 1) : word).join(" ")).toList();
   }
 
   static List<String> _firstLetter(List<String> poem) {
@@ -196,20 +181,9 @@ class _Helper {
     }).toList();
   }
 
-
   static String _hideString(String string) => _hideNCharacters(string.length);
+
   static String _hideNCharacters(int value) => hide * value;
 }
 
-enum PoemDisplayType {
-  original,
-  halfLineLeft,
-  halfLineRight,
-  first7,
-  firstAndLast,
-  first,
-  last,
-  firstAndLastLetterEachWord,
-  firstLetterEachWord,
-  firstLetter
-}
+enum PoemDisplayType { original, halfLineLeft, halfLineRight, first7, firstAndLast, first, last, firstAndLastLetterEachWord, firstLetterEachWord, firstLetter }
