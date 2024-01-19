@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cramming_poems/Data/poemList.dart';
 import 'package:cramming_poems/Data/editingModeController.dart';
+import 'package:cramming_poems/Decoration/styles.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({super.key});
@@ -57,7 +58,7 @@ class _HomePageView extends State<HomePageView> {
             child: Column(
               children: (!editingModeController.isEditMode)
                   ? [
-                      IconButton(onPressed: enableEditingMode, icon: const Icon(Icons.edit)),
+                      IconButton(onPressed: enableEditingMode, icon: const Icon(Icons.edit_outlined), style: buttonStyleDefault),
                       Text(
                         poemList.selectedPoem.title,
                         style: Theme.of(context).textTheme.titleMedium,
@@ -68,14 +69,14 @@ class _HomePageView extends State<HomePageView> {
                         style: Theme.of(context).textTheme.bodyMedium,
                         overflow: TextOverflow.clip,
                       ),
-                      IconButton(onPressed: enableEditingMode, icon: const Icon(Icons.edit_outlined)),
+                      IconButton(onPressed: enableEditingMode, icon: const Icon(Icons.edit_outlined), style: buttonStyleDefault),
                     ]
                   : [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          IconButton(onPressed: cancelEditingMode, icon: const Icon(Icons.cancel)),
-                          IconButton(onPressed: completeEditingMode, icon: const Icon(Icons.save)),
+                          IconButton(onPressed: cancelEditingMode, icon: const Icon(Icons.cancel), style: buttonStyleOFF),
+                          IconButton(onPressed: completeEditingMode, icon: const Icon(Icons.save), style: buttonStyleOK),
                         ],
                       ),
                       TextField(
@@ -96,8 +97,8 @@ class _HomePageView extends State<HomePageView> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          IconButton(onPressed: cancelEditingMode, icon: const Icon(Icons.cancel)),
-                          IconButton(onPressed: completeEditingMode, icon: const Icon(Icons.save)),
+                          IconButton(onPressed: cancelEditingMode, icon: const Icon(Icons.cancel), style: buttonStyleOFF),
+                          IconButton(onPressed: completeEditingMode, icon: const Icon(Icons.save), style: buttonStyleOK),
                         ],
                       ),
                     ],
