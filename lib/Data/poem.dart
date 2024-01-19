@@ -67,14 +67,21 @@ class _Helper {
     return map[type]!(poem);
   }
 
-  static List<String> _halfLineRight(List<String> poem) {
+
+  static List<String> _halfLineLeft(List<String> poem) {
     List<String> result = [];
     for (String line in poem) {
       List<String> words = line.split(' ');
 
-      int halfLength = (words.length / 2).ceil();
-      for (int i = 0; i < words.length; i++) {
-        words[i] = i < halfLength ? _hideString(words[i]) : words[i];
+      int toSkip = 0;
+      for (String word in words) {
+        if (word.isEmpty) toSkip++;
+      }
+      int halfLength = ((words.length - toSkip) / 2).floor();
+
+      for (int i = 0, skipped = 0; i < words.length; i++) {
+        words[i] = (i - skipped) >= halfLength ? _hideString(words[i]) : words[i];
+        if (words[i].isEmpty) skipped++;
       }
 
       result.add(words.join(' '));
@@ -82,14 +89,20 @@ class _Helper {
     return result;
   }
 
-  static List<String> _halfLineLeft(List<String> poem) {
+  static List<String> _halfLineRight(List<String> poem) {
     List<String> result = [];
     for (String line in poem) {
       List<String> words = line.split(' ');
 
-      int halfLength = (words.length / 2).floor();
-      for (int i = 0; i < words.length; i++) {
-        words[i] = i >= halfLength ? _hideString(words[i]) : words[i];
+      int toSkip = 0;
+      for (String word in words) {
+        if (word.isEmpty) toSkip++;
+      }
+      int halfLength = ((words.length - toSkip) / 2).ceil();
+
+      for (int i = 0, skipped = 0; i < words.length; i++) {
+        words[i] = (i - skipped) < halfLength ? _hideString(words[i]) : words[i];
+        if (words[i].isEmpty) skipped++;
       }
 
       result.add(words.join(' '));
