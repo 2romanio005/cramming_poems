@@ -17,12 +17,14 @@ class EditingModeController{
   }
 
   void enableEditingMode() {
+    if(_isEditMode) return;
     _isEditMode = true;
     titleController.text = poemList.selectedPoem.title;
     textController.text = poemList.selectedPoem.text.join("\n");
   }
 
   void completeEditingMode() {
+    if(!_isEditMode) return;
     _isEditMode = false;
     poemList.selectedPoem = Poem(
       text: textController.text.split('\n'),
@@ -31,6 +33,7 @@ class EditingModeController{
   }
 
   void cancelEditingMode(){
+    if(!_isEditMode) return;
     _isEditMode = false;
   }
 

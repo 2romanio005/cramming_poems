@@ -47,7 +47,7 @@ class _FutureBuilderHome extends State<FutureBuilderHome> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 16),
-                    child: Text('Ошибка: ${snapshot.error}'),
+                    child: Text('Ошибка: ${snapshot.error}', style: TextStyle(color: Colors.red)),
                   ),
                 ],
               ),
@@ -64,7 +64,7 @@ class _FutureBuilderHome extends State<FutureBuilderHome> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 16),
-                    child: Text('Загрузка стихотворений...'),
+                    child: Text('Загрузка стихотворений...', style: TextStyle(color: Colors.green)),
                   ),
                 ],
               ),

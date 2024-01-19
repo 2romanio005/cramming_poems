@@ -19,12 +19,14 @@ ThemeData mainTheme = ThemeData(
     /// заголовок стиха
     titleMedium: TextStyle(
       fontFamily: "Oswald",
+      color: ColorFont,
       fontSize: 25,
       fontWeight: FontWeight.bold,
     ),
     /// заголовки в менюшках
     titleSmall: TextStyle(
       fontFamily: "Oswald",
+      color: ColorFont,
       fontSize: 20,
       fontWeight: FontWeight.w600,
     ),
@@ -32,25 +34,27 @@ ThemeData mainTheme = ThemeData(
     /// осоновной текст стиха
     bodyMedium: TextStyle(
       fontFamily: "Consolas",
+      color: ColorFont,
       fontSize: 18,
     ),
 
     /// заголовок всплывающих окон
     labelLarge: TextStyle(
       fontFamily: "Oswald",
-      color: ColorFont,
+      color: ColorHeader,
       fontSize: 24,
       fontWeight: FontWeight.w700,
     ),
     /// текс всплывающих окон
     labelMedium: TextStyle(
       fontFamily: "Consolas",
+      color: ColorFont,
       fontSize: 18,
     ),
     /// текст на кнопках
     labelSmall: TextStyle(
       fontFamily: "Consolas",
-      //color: ColorFont,
+      color: ColorFont,
       fontSize: 18,
       fontWeight: FontWeight.w600
     ),

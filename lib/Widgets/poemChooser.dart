@@ -61,7 +61,7 @@ class _PoemChooser extends State<PoemChooser> {
                             onPressed: () async {
                               await confirmationBox(
                                   context: context,
-                                  title: 'Удалить стих?',
+                                  title: 'Удалить стихотворение?',
                                   text: "Стихотворение \"${poemList[index].poem.title}\" будет удалено.",
                                   textOK: 'Удалить',
                                   textOFF: 'Отмена',

@@ -60,7 +60,7 @@ class _Home extends State<Home> {
               "Запоминаем стихотворение",
               style: TextStyle(
                 fontFamily: "Oswald",
-                color: ColorFont,
+                color: ColorHeader,
                 fontSize: min((MediaQuery.of(context).size.width - 100) / 12, 30),
                 fontWeight: FontWeight.bold,
               ),
