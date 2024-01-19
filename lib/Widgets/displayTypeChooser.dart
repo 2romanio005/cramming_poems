@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:cramming_poems/Data/poem.dart';
 import 'package:cramming_poems/Data/poemList.dart';
+import 'package:cramming_poems/Data/handlerPoemsDisplayTypes.dart';
 
 import 'package:cramming_poems/Decoration/colors.dart';
 
@@ -25,7 +25,7 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
             child: Container(
               color: ColorBackground,
               child: ListView.builder(
-                  itemCount: namePoemDisplayType.length,
+                  itemCount: HandlerPoemsDisplayTypes.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Card(
                       child: Row(
@@ -33,7 +33,7 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
                         children: [
                           Expanded(
                             child: ListTile(
-                              title: Text(namePoemDisplayType[PoemDisplayType.values[index]]!),
+                              title: Text(HandlerPoemsDisplayTypes.getNamePoemDisplayType(PoemDisplayType.values[index])),
                               titleTextStyle: Theme.of(context).textTheme.titleSmall,
                               selected: index == poemList.selectedPoemDisplayType.index,
                               onTap: () {
@@ -44,7 +44,7 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
                                   showCloseIcon: true,
                                   duration: Duration(seconds: 1),
                                   dismissDirection: DismissDirection.none,
-                                  content: Text(namePoemDisplayType[poemList.selectedPoemDisplayType]!),
+                                  content: Text(HandlerPoemsDisplayTypes.getNamePoemDisplayType(poemList.selectedPoemDisplayType)),
                                 ));
                                 widget.onChange();
                                 Navigator.pop(context);
@@ -63,15 +63,3 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
   }
 }
 
-const Map<PoemDisplayType, String> namePoemDisplayType = {
-  PoemDisplayType.original: "Оригинал",
-  PoemDisplayType.halfLineLeft: "Левая половина",
-  PoemDisplayType.halfLineRight: "Правая половина",
-  PoemDisplayType.first7: "Первые 7 букв",
-  PoemDisplayType.firstAndLast: "Первое и последнее слово",
-  PoemDisplayType.first: "Первое слово",
-  PoemDisplayType.last: "Последнее слово",
-  PoemDisplayType.firstAndLastLetterEachWord: "Первая и последняя буква каждого слова",
-  PoemDisplayType.firstLetterEachWord: "Первая буква каждого слова",
-  PoemDisplayType.firstLetter: "Первая буква каждой строки",
-};
