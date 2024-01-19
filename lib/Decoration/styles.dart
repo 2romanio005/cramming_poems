@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 
 import 'package:cramming_poems/Decoration/colors.dart';
 
@@ -9,50 +9,47 @@ ThemeData mainTheme = ThemeData(
     brightness: Brightness.light,
   ),
   textTheme: TextTheme(
-    /// название окна
-    // headlineMedium: GoogleFonts.oswald(
-    //   color: ColorFont,
-    //   //fontSize: ,
-    //   fontWeight: FontWeight.bold,
-    // ),
-
     /// заголовок заголовков
-    titleLarge: GoogleFonts.oswald(
+    titleLarge: TextStyle(
+      fontFamily: "Oswald",
       color: ColorHeader,
       fontSize: 27,
       fontWeight: FontWeight.bold,
     ),
     /// заголовок стиха
-    titleMedium: GoogleFonts.oswald(
-      // rubikMonoOne
-      // quantico
+    titleMedium: TextStyle(
+      fontFamily: "Oswald",
       fontSize: 25,
       fontWeight: FontWeight.bold,
     ),
     /// заголовок стиха в менюшке
-    titleSmall: GoogleFonts.oswald(
+    titleSmall: TextStyle(
+      fontFamily: "Oswald",
       fontSize: 20,
       fontWeight: FontWeight.bold,
     ),
 
     /// осоновной текст стиха
-    bodyMedium: GoogleFonts.robotoMono(
-      // anonymousPro
+    bodyMedium: TextStyle(
+      fontFamily: "Consolas",
       fontSize: 16,
     ),
 
     /// заголовок всплывающих окон
-    labelLarge: GoogleFonts.oswald(
+    labelLarge: TextStyle(
+      fontFamily: "Oswald",
       color: ColorFont,
       fontSize: 25,
       fontWeight: FontWeight.bold,
     ),
     /// текс всплывающих окон
-    labelMedium: GoogleFonts.robotoMono(
+    labelMedium: TextStyle(
+      fontFamily: "Consolas",
       fontSize: 16,
     ),
     /// текст на кнопках
-    labelSmall: GoogleFonts.robotoMono(
+    labelSmall: TextStyle(
+      fontFamily: "Consolas",
       color: ColorFont,
       fontSize: 20,
     ),
