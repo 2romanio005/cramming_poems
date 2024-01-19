@@ -56,6 +56,8 @@ class PoemList {
 
     if (createdPoemList._listPoemFile.isEmpty) {
       createdPoemList._addWelcomePlugPoemFile();
+      createdPoemList._selectedPoemDisplayType = PoemDisplayType.original;
+      createdPoemList.selectedPoemIndex = 0;  // с сохранением в память
     }
     createdPoemList._listPoemFile.sort((a, b) => a.nextNumberInFileName.compareTo(b.nextNumberInFileName));
 
@@ -63,6 +65,7 @@ class PoemList {
   }
 
   Poem _getWelcomePlugPoem() {
+    print("get");
     return Poem(
         text: [
           "    Вы можете добавить стихотворения по кнопке '+' через меню в левом верхнем углу (три полосочки) и редактировать их по нажатию на иконку ручки (сверху по центру).",
@@ -108,6 +111,7 @@ class PoemList {
       poem: _getWelcomePlugPoem(),
       dataFile: File("${_directory.path}/0.txt"),
     ));
+    print("add ${_directory.path}/0.txt");
   }
 
   addPoemFile(PoemFile poemFile) {
@@ -146,6 +150,7 @@ class PoemList {
     }
     _listPoemFile.clear();
     _addWelcomePlugPoemFile();
+    selectedPoemIndex = 0;
   }
 
   PoemFile operator [](int index) {
@@ -195,7 +200,7 @@ class PoemList {
   void _writeInFile() async {
     try {
       //print("Writing: ${_dataFile.path}");
-      _dataFile.writeAsString("$_selectedPoemIndex\n${_selectedPoemDisplayType.index}");
+      _dataFile.writeAsString("$_selectedPoemIndex\n${_selectedPoemDisplayType.index}\n${HandlerPoemsDisplayTypes.hidden}");
     } catch (error) {
       print(error);
     }
@@ -205,8 +210,9 @@ class PoemList {
     try {
       //print("Reading: ${_dataFile.path}");
       List<String> content = _dataFile.readAsLinesSync();
-      _selectedPoemIndex = int.parse(content[0]); // запись индекса выбранного стиаха
-      _selectedPoemDisplayType = PoemDisplayType.values[int.parse(content[1])]; // запись выбраного отображения
+      _selectedPoemIndex = int.parse(content[0]) ?? 0; // запись индекса выбранного стиаха
+      _selectedPoemDisplayType = PoemDisplayType.values[int.parse(content[1]) ?? 0]; // запись выбраного отображения
+      HandlerPoemsDisplayTypes.hidden = content[2] ?? '.';
     } catch (error) {
       print(error);
     }

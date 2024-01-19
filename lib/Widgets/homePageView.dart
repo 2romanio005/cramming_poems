@@ -20,7 +20,7 @@ class _HomePageView extends State<HomePageView> {
       showCloseIcon: true,
       duration: Duration(seconds: 1),
       dismissDirection: DismissDirection.none,
-      content: Text("Режим Редактирования"),
+      content: Text("Режим редактирования", textAlign: TextAlign.center),
     ));
   }
 
@@ -32,7 +32,7 @@ class _HomePageView extends State<HomePageView> {
       showCloseIcon: true,
       duration: Duration(seconds: 1),
       dismissDirection: DismissDirection.none,
-      content: Text("Изменения сохранены"),
+      content: Text("Сохранено", textAlign: TextAlign.center),
     ));
   }
 
@@ -44,7 +44,7 @@ class _HomePageView extends State<HomePageView> {
       showCloseIcon: true,
       duration: Duration(seconds: 1),
       dismissDirection: DismissDirection.none,
-      content: Text("Изменения отменены"),
+      content: Text("Отменено", textAlign: TextAlign.center),
     ));
   }
 
@@ -92,7 +92,7 @@ class _HomePageView extends State<HomePageView> {
                       TextField(
                         controller: editingModeController.textController,
                         style: Theme.of(context).textTheme.bodyMedium,
-                        decoration: const InputDecoration(hintText: 'Вставьте текст стихотворение.', ),
+                        decoration: const InputDecoration(hintText: 'Вставьте текст стихотворения.', ),
                         maxLines: null,
                       ),
                       Row(

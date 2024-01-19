@@ -85,7 +85,7 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
                                   showCloseIcon: true,
                                   duration: Duration(seconds: 1),
                                   dismissDirection: DismissDirection.none,
-                                  content: Text(HandlerPoemsDisplayTypes.getNamePoemDisplayType(poemList.selectedPoemDisplayType)),
+                                  content: Text(HandlerPoemsDisplayTypes.getNamePoemDisplayType(poemList.selectedPoemDisplayType), textAlign: TextAlign.center),
                                 ));
                                 widget.onChange();
                                 Navigator.pop(context);

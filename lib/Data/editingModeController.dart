@@ -12,6 +12,10 @@ class EditingModeController{
     return _isEditMode;
   }
 
+  bool get isNotEditMode{
+    return !_isEditMode;
+  }
+
   void enableEditingMode() {
     _isEditMode = true;
     titleController.text = poemList.selectedPoem.title;

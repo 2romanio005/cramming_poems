@@ -47,9 +47,6 @@ class _PoemChooser extends State<PoemChooser> {
                               titleTextStyle: Theme.of(context).textTheme.titleSmall,
                               selected: index == poemList.selectedPoemIndex,
                               onTap: () {
-                                if(editingModeController.isEditMode){
-                                  editingModeController.completeEditingMode();
-                                }
                                 setState(() {
                                   poemList.selectedPoemIndex = index;
                                 });
@@ -113,7 +110,8 @@ class _PoemChooser extends State<PoemChooser> {
                           setState(() {
                             poemList.clear();
                           });
-                          widget.onSelect();
+
+                          widget.onDelete();
                           //Navigator.pop(context);  // закрытие окна выбора стиха
                         });
                   },

@@ -20,42 +20,57 @@ class _Home extends State<Home> {
     setState(() {});
   }
 
+  void openDrawer(void Function() open) {
+    if (editingModeController.isNotEditMode) {
+      open();
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        showCloseIcon: true,
+        duration: Duration(milliseconds: 500),
+        dismissDirection: DismissDirection.none,
+        content: Text("Сначало сохраните стихотворение", textAlign: TextAlign.center),
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorBackground,
       appBar: AppBar(
-          actions: [
-            Builder(
-              builder: (context) => IconButton(
-                icon: const Icon(Icons.visibility),
-                onPressed: () => Scaffold.of(context).openEndDrawer(),
-                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+        actions: [
+          Builder(
+            builder: (context) => IconButton(
+              icon: const Icon(Icons.visibility),
+              onPressed: () => openDrawer(() => Scaffold.of(context).openEndDrawer()),
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            ),
+          ),
+        ],
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.list),
+            onPressed: () => openDrawer(() => Scaffold.of(context).openDrawer()),
+          ),
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Запоминаем стихотворение",
+              style: TextStyle(
+                fontFamily: "Oswald",
+                color: ColorFont,
+                fontSize: min((MediaQuery.of(context).size.width - 100) / 12, 30),
+                fontWeight: FontWeight.bold,
               ),
             ),
           ],
-          leading: Builder(
-            builder: (context) => IconButton(
-              icon: const Icon(Icons.list),
-              onPressed: () => Scaffold.of(context).openDrawer(),
-            ),
-          ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Запоминаем стихотворение",
-                style: TextStyle(
-                  fontFamily: "Oswald",
-                  color: ColorFont,
-                  fontSize: min((MediaQuery.of(context).size.width - 100) / 12, 30),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          )),
+        ),
+      ),
+
       drawer: Container(
-          margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+        margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
         child: PoemChooser(
           onSelect: redraw,
           onDelete: redraw,
@@ -69,6 +84,7 @@ class _Home extends State<Home> {
         margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
         child: DisplayTypeChooser(onChange: redraw),
       ),
+
       body: HomePageView(), // не добавлять const а то всё перестаёт обновляться
     );
   }

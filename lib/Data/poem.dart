@@ -23,6 +23,8 @@ class Poem {
           return;
         }
       }
+      _title = "empty";
+      return;
     }
     _title = newTitle;
   }
@@ -32,10 +34,6 @@ class Poem {
   }
 
   set text(List<String> newText) {
-    if (newText.isEmpty) {
-      _text = ["empty"];
-      return;
-    }
     _text = newText;
   }
 
