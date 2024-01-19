@@ -19,6 +19,10 @@ class PoemChooser extends StatefulWidget {
 }
 
 class _PoemChooser extends State<PoemChooser> {
+  int _getIndex(int oldIndex){
+    return poemList.length - oldIndex - 1;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -29,15 +33,18 @@ class _PoemChooser extends State<PoemChooser> {
             child: Container(
               color: ColorBackground,
               child: ListView.builder(
+                  //reverse: true,
+
                   itemCount: poemList.length,
                   itemBuilder: (BuildContext context, int index) {
+                    index = _getIndex(index);  // делаем вывод списка в обратном порядке
                     return Card(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
                             child: ListTile(
-                              title: Text(poemList[poemList.length - index - 1].poem.title), // выводим в обратном порядке, старые внизу новые сврху (но хранятся они наоборот)
+                              title: Text(poemList[index].poem.title),
                               titleTextStyle: Theme.of(context).textTheme.titleSmall,
                               selected: index == poemList.selectedPoemIndex,
                               onTap: () {
