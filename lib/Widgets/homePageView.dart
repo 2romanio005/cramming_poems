@@ -58,7 +58,11 @@ class _HomePageView extends State<HomePageView> {
               children: (!editingModeController.isEditMode)
                   ? [
                       IconButton(onPressed: enableEditingMode, icon: const Icon(Icons.edit)),
-                      Text(poemList.selectedPoem.title, style: Theme.of(context).textTheme.titleMedium, textAlign: TextAlign.center,),
+                      Text(
+                        poemList.selectedPoem.title,
+                        style: Theme.of(context).textTheme.titleMedium,
+                        textAlign: TextAlign.center,
+                      ),
                       Text(
                         poemList.selectedFormatText.join("\n"),
                         style: Theme.of(context).textTheme.bodyMedium,
@@ -74,13 +78,19 @@ class _HomePageView extends State<HomePageView> {
                           IconButton(onPressed: completeEditingMode, icon: const Icon(Icons.save)),
                         ],
                       ),
-                      TextField(controller: editingModeController.titleController, style: Theme.of(context).textTheme.titleMedium, textAlign: TextAlign.center),
+                      TextField(
+                        controller: editingModeController.titleController,
+                        style: Theme.of(context).textTheme.titleMedium,
+                        textAlign: TextAlign.center,
+                        decoration: const InputDecoration(hintText: 'Названием будет первая строка стиха'),
+                      ),
                       // autofocus,
                       // decoration:
                       //   InputDecoration(hintText: 'both', labelText: 'both'),
                       TextField(
                         controller: editingModeController.textController,
                         style: Theme.of(context).textTheme.bodyMedium,
+                        decoration: const InputDecoration(hintText: 'Вставьте или напишите сюда текст стиха...'),
                         maxLines: null,
                       ),
                       Row(

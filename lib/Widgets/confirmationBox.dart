@@ -20,7 +20,7 @@ Future<void> confirmationBox({
         return AlertDialog(
           insetPadding: EdgeInsets.zero,
           actionsAlignment: MainAxisAlignment.spaceAround,
-          title: Text(title),
+          title: Text(title, textAlign: TextAlign.center),
           titleTextStyle: Theme.of(context).textTheme.labelLarge,
           content: Text(text),
           contentTextStyle: Theme.of(context).textTheme.labelMedium,
