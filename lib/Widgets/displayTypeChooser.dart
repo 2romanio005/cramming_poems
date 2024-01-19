@@ -20,15 +20,56 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
     return Drawer(
       child: Column(
         children: [
-          Text("Выберите отображение", style: Theme.of(context).textTheme.titleLarge, textAlign: TextAlign.center,),
+          Text("Настройте отображение", style: Theme.of(context).textTheme.titleLarge, textAlign: TextAlign.center),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 150,
+                child: DropdownButtonFormField<String>(
+                  decoration: const InputDecoration(
+                    filled: true,
+                    //fillColor: ColorButtonBackground,
+                    labelText: "Заполнитель",
+                  ),
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  dropdownColor: ColorButtonBackground,
+                  value: HandlerPoemsDisplayTypes.hidden,
+                  onChanged: (String? newValue) {
+                    HandlerPoemsDisplayTypes.hidden = newValue!;
+
+                    widget.onChange();
+                  },
+                  items: const [
+                    DropdownMenuItem(
+                      alignment: AlignmentDirectional.center,
+                      value: ".",
+                      child: Text(
+                        "Точка .",
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      alignment: AlignmentDirectional.center,
+                      value: "_",
+                      child: Text(
+                        "Чёрточка _",
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
           Expanded(
             child: Container(
               color: ColorBackground,
               child: ListView.builder(
+                  padding: const EdgeInsets.only(top: 5),
                   itemCount: HandlerPoemsDisplayTypes.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Card(
-                      child: Row(  // только для возможности использовать Expanded
+                      child: Row(
+                        // только для возможности использовать Expanded
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
@@ -62,4 +103,3 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
     );
   }
 }
-

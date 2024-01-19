@@ -33,8 +33,7 @@ class _PoemChooser extends State<PoemChooser> {
             child: Container(
               color: ColorBackground,
               child: ListView.builder(
-                  //reverse: true,
-
+                  padding: const EdgeInsets.only(top: 5),
                   itemCount: poemList.length,
                   itemBuilder: (BuildContext context, int index) {
                     index = _getIndex(index);  // делаем вывод списка в обратном порядке

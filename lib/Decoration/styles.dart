@@ -13,7 +13,7 @@ ThemeData mainTheme = ThemeData(
     titleLarge: TextStyle(
       fontFamily: "Oswald",
       color: ColorHeader,
-      fontSize: 27,
+      fontSize: 26,
       fontWeight: FontWeight.bold,
     ),
     /// заголовок стиха

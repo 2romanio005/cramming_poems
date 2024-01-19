@@ -55,7 +55,7 @@ class _Home extends State<Home> {
             ],
           )),
       drawer: Container(
-        margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+          margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
         child: PoemChooser(
           onSelect: redraw,
           onDelete: redraw,
