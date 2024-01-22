@@ -3,7 +3,6 @@ import 'package:cramming_poems/futureBuilderHome.dart';
 
 import 'package:cramming_poems/Decoration/styles.dart';
 
-
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {

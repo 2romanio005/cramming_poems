@@ -16,6 +16,7 @@ ThemeData mainTheme = ThemeData(
       fontSize: 26,
       fontWeight: FontWeight.bold,
     ),
+
     /// заголовок стиха
     titleMedium: TextStyle(
       fontFamily: "Oswald",
@@ -23,6 +24,7 @@ ThemeData mainTheme = ThemeData(
       fontSize: 25,
       fontWeight: FontWeight.bold,
     ),
+
     /// заголовки в менюшках
     titleSmall: TextStyle(
       fontFamily: "Oswald",
@@ -45,19 +47,20 @@ ThemeData mainTheme = ThemeData(
       fontSize: 24,
       fontWeight: FontWeight.w700,
     ),
+
     /// текс всплывающих окон
     labelMedium: TextStyle(
       fontFamily: "Consolas",
       color: ColorFont,
       fontSize: 18,
     ),
+
     /// текст на кнопках
     labelSmall: TextStyle(
-      fontFamily: "Consolas",
-      color: ColorFont,
-      fontSize: 18,
-      fontWeight: FontWeight.w600
-    ),
+        fontFamily: "Consolas",
+        color: ColorFont,
+        fontSize: 18,
+        fontWeight: FontWeight.w600),
   ),
 );
 
@@ -68,6 +71,7 @@ ButtonStyle buttonStyleOFF = IconButton.styleFrom(
   foregroundColor: ColorButtonForeground,
   highlightColor: ColorButtonPressedOFF,
 );
+
 /// кнопка согласия (зеленеет)
 ButtonStyle buttonStyleOK = IconButton.styleFrom(
   backgroundColor: ColorButtonBackground,
@@ -75,6 +79,7 @@ ButtonStyle buttonStyleOK = IconButton.styleFrom(
   foregroundColor: ColorButtonForeground,
   highlightColor: ColorButtonPressedOK,
 );
+
 /// обычная кнопка (сереет)
 ButtonStyle buttonStyleDefault = IconButton.styleFrom(
   backgroundColor: ColorButtonBackground,

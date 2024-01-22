@@ -7,7 +7,9 @@ class PoemFile {
   PoemFile({required Poem poem, required File dataFile}) {
     _dataFile = dataFile;
     String path = _dataFile.path;
-    _nextNumberInFileName = int.parse(path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf('.'))) + 1;
+    _nextNumberInFileName = int.parse(
+            path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf('.'))) +
+        1;
 
     _poem = poem;
     // если файл существует то надо читать с него, а если отсутсвует то создать его и сохраниться в нем
@@ -37,8 +39,9 @@ class PoemFile {
 
   Future<void> _writeInFile() async {
     try {
-      _dataFile.writeAsString("${poem.text.join("\n")}\n${poem.title}"); // записываем в файл оригинал текста и в конце - название
-    } catch(error){
+      _dataFile.writeAsString(
+          "${poem.text.join("\n")}\n${poem.title}"); // записываем в файл оригинал текста и в конце - название
+    } catch (error) {
       print(error);
     }
   }
@@ -51,11 +54,11 @@ class PoemFile {
     return _nextNumberInFileName;
   }
 
-  Poem get poem{
+  Poem get poem {
     return _poem;
   }
 
-  set poem(Poem newPoem){
+  set poem(Poem newPoem) {
     //_poem = Poem.copy(newPoem);
     _poem = newPoem;
     _writeInFile();

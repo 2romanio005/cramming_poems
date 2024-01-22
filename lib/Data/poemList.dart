@@ -25,10 +25,13 @@ class PoemList {
     Directory directory = await getApplicationDocumentsDirectory();
     File dataFile = File("${directory.path}/dataPoemList.txt");
 
-    directory = await Directory("${directory.path}/savedPoems").create(recursive: true);
-    PoemList createdPoemList = PoemList._(directory: directory, dataFile: dataFile);
+    directory =
+        await Directory("${directory.path}/savedPoems").create(recursive: true);
+    PoemList createdPoemList =
+        PoemList._(directory: directory, dataFile: dataFile);
 
-    final List<FileSystemEntity> entities = await directory.list(recursive: false).toList();
+    final List<FileSystemEntity> entities =
+        await directory.list(recursive: false).toList();
     final Iterable<File> files = entities.whereType<File>();
     //files.forEach(print);
     for (File file in files) {
@@ -47,7 +50,8 @@ class PoemList {
       }
       createdPoemList._listPoemFile.add(PoemFile(
         poem: Poem(
-          title: "Reading error", // будет перезаписано из файла, или останется если произойдёт ошибка чтения
+          title:
+              "Reading error", // будет перезаписано из файла, или останется если произойдёт ошибка чтения
         ),
         dataFile: file,
       ));
@@ -57,9 +61,10 @@ class PoemList {
     if (createdPoemList._listPoemFile.isEmpty) {
       createdPoemList._addWelcomePlugPoemFile();
       createdPoemList._selectedPoemDisplayType = PoemDisplayType.original;
-      createdPoemList.selectedPoemIndex = 0;  // с сохранением в память
+      createdPoemList.selectedPoemIndex = 0; // с сохранением в память
     }
-    createdPoemList._listPoemFile.sort((a, b) => a.nextNumberInFileName.compareTo(b.nextNumberInFileName));
+    createdPoemList._listPoemFile.sort(
+        (a, b) => a.nextNumberInFileName.compareTo(b.nextNumberInFileName));
 
     return createdPoemList;
   }
@@ -67,47 +72,47 @@ class PoemList {
   Poem _getWelcomePlugPoem() {
     print("get");
     return Poem(
-        text: [
-          "    Добавить стихотворения по кнопке '+' через меню в левом верхнем углу (три полосочки).",
-          "    Редактировать стихотворение по двойному клику на тексте или по нажатию на иконку ручки (снизу текста).",
-          "    Выбрать способ отображения теста стихотворений через меню в правом верхнем углу (глазик).",
-          "",
-          "",
-          "",
-          "   __________          (\\",
-          "  ()_________)         \\\'\\",
-          "   \\  ~~~~ ~  \\         \\\'\\",
-          "    \\  ~~~~~~  \\        / \'|",
-          "     \\  ~~ ~~~  \\       \\ \'/",
-          "      \\__________\\        \\",
-          "      ()__________)       ==",
-          "                         (__)",
-          "",
-          "",
-          "",
-          "От двух Улиточек!\t2024 год.",
-          "",
-          "Обратная связь:",
-          "spamakk862@gmail.com",
-		  "https://github.com/2romanio005/cramming_poems",
-        ],
-        // "(¯`O´¯)",
-        // "*./ | \\ .*",
-        // "..*♫*.",
-        //   ", • '*♥* ' • ,",
-        //   ". '*• ♫♫♫•*'",
-        //   ".. ' *, • '♫ ' • ,* \'",
-        //   ".' * • ♫*♥*♫• * '",
-        //   "* • С_Новым'•  * '",
-        //   ".* ' •♫♫*♥*♫♫ • ' * '",
-        //   "' ' • Годом . • ' ' '",
-        //   "' ' • ♫♫♫*♥*♫♫♫• * ' '",
-        //   "..x♥x"
-        title: "Добро пожаловать в Cramming Poems!",
-      );
+      text: [
+        "    Добавить стихотворения по кнопке '+' через меню в левом верхнем углу (три полосочки).",
+        "    Редактировать стихотворение по двойному клику на тексте или по нажатию на иконку ручки (снизу текста).",
+        "    Выбрать способ отображения теста стихотворений через меню в правом верхнем углу (глазик).",
+        "",
+        "",
+        "",
+        "   __________          (\\",
+        "  ()_________)         \\\'\\",
+        "   \\  ~~~~ ~  \\         \\\'\\",
+        "    \\  ~~~~~~  \\        / \'|",
+        "     \\  ~~ ~~~  \\       \\ \'/",
+        "      \\__________\\        \\",
+        "      ()__________)       ==",
+        "                         (__)",
+        "",
+        "",
+        "",
+        "От двух Улиточек!\t2024 год.",
+        "",
+        "Обратная связь:",
+        "spamakk862@gmail.com",
+        "https://github.com/2romanio005/cramming_poems",
+      ],
+      // "(¯`O´¯)",
+      // "*./ | \\ .*",
+      // "..*♫*.",
+      //   ", • '*♥* ' • ,",
+      //   ". '*• ♫♫♫•*'",
+      //   ".. ' *, • '♫ ' • ,* \'",
+      //   ".' * • ♫*♥*♫• * '",
+      //   "* • С_Новым'•  * '",
+      //   ".* ' •♫♫*♥*♫♫ • ' * '",
+      //   "' ' • Годом . • ' ' '",
+      //   "' ' • ♫♫♫*♥*♫♫♫• * ' '",
+      //   "..x♥x"
+      title: "Добро пожаловать в Cramming Poems!",
+    );
   }
 
-  _addWelcomePlugPoemFile(){
+  _addWelcomePlugPoemFile() {
     _listPoemFile.add(PoemFile(
       poem: _getWelcomePlugPoem(),
       dataFile: File("${_directory.path}/0.txt"),
@@ -121,7 +126,8 @@ class PoemList {
   }
 
   newPoemFile() {
-    int nextNumberInFileName = (_listPoemFile.isEmpty) ? 0 : (_listPoemFile.last.nextNumberInFileName);
+    int nextNumberInFileName =
+        (_listPoemFile.isEmpty) ? 0 : (_listPoemFile.last.nextNumberInFileName);
     selectedPoemIndex = nextNumberInFileName;
     addPoemFile(PoemFile(
       poem: Poem(
@@ -133,7 +139,8 @@ class PoemList {
 
   removePoemAt(int index) {
     if (index == 0) {
-      _listPoemFile[0].poem = _getWelcomePlugPoem(); // перезаписать приветствуюший текст с оригинала
+      _listPoemFile[0].poem =
+          _getWelcomePlugPoem(); // перезаписать приветствуюший текст с оригинала
       return;
     }
     selectedPoemIndex -= (index <= _selectedPoemIndex) ? 1 : 0;
@@ -201,7 +208,8 @@ class PoemList {
   void _writeInFile() async {
     try {
       //print("Writing: ${_dataFile.path}");
-      _dataFile.writeAsString("$_selectedPoemIndex\n${_selectedPoemDisplayType.index}\n${HandlerPoemsDisplayTypes.hidden}");
+      _dataFile.writeAsString(
+          "$_selectedPoemIndex\n${_selectedPoemDisplayType.index}\n${HandlerPoemsDisplayTypes.hidden}");
     } catch (error) {
       print(error);
     }
@@ -211,8 +219,10 @@ class PoemList {
     try {
       //print("Reading: ${_dataFile.path}");
       List<String> content = _dataFile.readAsLinesSync();
-      _selectedPoemIndex = int.parse(content[0]) ?? 0; // запись индекса выбранного стиаха
-      _selectedPoemDisplayType = PoemDisplayType.values[int.parse(content[1]) ?? 0]; // запись выбраного отображения
+      _selectedPoemIndex =
+          int.parse(content[0]) ?? 0; // запись индекса выбранного стиаха
+      _selectedPoemDisplayType = PoemDisplayType
+          .values[int.parse(content[1]) ?? 0]; // запись выбраного отображения
       HandlerPoemsDisplayTypes.hidden = content[2] ?? '.';
     } catch (error) {
       print(error);

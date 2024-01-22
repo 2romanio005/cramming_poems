@@ -17,8 +17,8 @@ class Poem {
   /// line of textLines
   set title(String newTitle) {
     if (newTitle.isEmpty) {
-      for (String line in _text){
-        if(line.isNotEmpty){
+      for (String line in _text) {
+        if (line.isNotEmpty) {
           _title = line;
           return;
         }
@@ -52,4 +52,3 @@ class Poem {
   late String _title;
   late List<String> _text;
 }
-

@@ -71,14 +71,23 @@ class _HomePageView extends State<HomePageView> {
                           style: Theme.of(context).textTheme.bodyMedium,
                           overflow: TextOverflow.clip,
                         ),
-                        IconButton(onPressed: enableEditingMode, icon: const Icon(Icons.edit_outlined), style: buttonStyleDefault),
+                        IconButton(
+                            onPressed: enableEditingMode,
+                            icon: const Icon(Icons.edit_outlined),
+                            style: buttonStyleDefault),
                       ]
                     : [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            IconButton(onPressed: cancelEditingMode, icon: const Icon(Icons.cancel), style: buttonStyleOFF),
-                            IconButton(onPressed: completeEditingMode, icon: const Icon(Icons.save), style: buttonStyleOK),
+                            IconButton(
+                                onPressed: cancelEditingMode,
+                                icon: const Icon(Icons.cancel),
+                                style: buttonStyleOFF),
+                            IconButton(
+                                onPressed: completeEditingMode,
+                                icon: const Icon(Icons.save),
+                                style: buttonStyleOK),
                           ],
                         ),
                         TextField(
@@ -86,7 +95,9 @@ class _HomePageView extends State<HomePageView> {
                           style: Theme.of(context).textTheme.titleMedium,
                           textAlign: TextAlign.center,
                           maxLines: null,
-                          decoration: const InputDecoration(hintText: 'Названием станет первая строка стихотворения'),
+                          decoration: const InputDecoration(
+                              hintText:
+                                  'Названием станет первая строка стихотворения'),
                         ),
                         TextField(
                           controller: editingModeController.textController,
@@ -99,8 +110,14 @@ class _HomePageView extends State<HomePageView> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            IconButton(onPressed: cancelEditingMode, icon: const Icon(Icons.cancel), style: buttonStyleOFF),
-                            IconButton(onPressed: completeEditingMode, icon: const Icon(Icons.save), style: buttonStyleOK),
+                            IconButton(
+                                onPressed: cancelEditingMode,
+                                icon: const Icon(Icons.cancel),
+                                style: buttonStyleOFF),
+                            IconButton(
+                                onPressed: completeEditingMode,
+                                icon: const Icon(Icons.save),
+                                style: buttonStyleOK),
                           ],
                         ),
                       ],

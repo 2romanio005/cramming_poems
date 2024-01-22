@@ -49,7 +49,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId namespace
+        applicationId "ru.keenmoths.cramming_poems"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion flutter.minSdkVersion
@@ -70,6 +70,13 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
+            applicationVariants.all { variant ->
+                variant.outputs.all {
+                    def appName = "cramming_poems"
+                    def newName = "${appName}_${defaultConfig.versionName}.apk"
+                    outputFileName = newName
+                }
+            }
         }
     }
 }

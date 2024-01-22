@@ -27,7 +27,8 @@ Future<void> confirmationBox({
           actions: [
             ElevatedButton(
               style: buttonStyleOFF,
-              child: Text(textOFF, style: Theme.of(context).textTheme.labelSmall),
+              child:
+                  Text(textOFF, style: Theme.of(context).textTheme.labelSmall),
               onPressed: () {
                 functionOFF!();
                 Navigator.of(context).pop();
@@ -35,7 +36,8 @@ Future<void> confirmationBox({
             ),
             ElevatedButton(
               style: buttonStyleOK,
-              child: Text(textOK, style: Theme.of(context).textTheme.labelSmall),
+              child:
+                  Text(textOK, style: Theme.of(context).textTheme.labelSmall),
               onPressed: () {
                 functionOK!();
                 Navigator.of(context).pop();

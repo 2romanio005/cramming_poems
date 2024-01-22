@@ -28,7 +28,8 @@ class _Home extends State<Home> {
         showCloseIcon: true,
         duration: Duration(milliseconds: 500),
         dismissDirection: DismissDirection.none,
-        content: Text("Сначало сохраните стихотворение", textAlign: TextAlign.center),
+        content: Text("Сначало сохраните стихотворение",
+            textAlign: TextAlign.center),
       ));
     }
   }
@@ -42,7 +43,8 @@ class _Home extends State<Home> {
           Builder(
             builder: (context) => IconButton(
               icon: const Icon(Icons.visibility),
-              onPressed: () => openDrawer(() => Scaffold.of(context).openEndDrawer()),
+              onPressed: () =>
+                  openDrawer(() => Scaffold.of(context).openEndDrawer()),
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             ),
           ),
@@ -50,7 +52,8 @@ class _Home extends State<Home> {
         leading: Builder(
           builder: (context) => IconButton(
             icon: const Icon(Icons.list),
-            onPressed: () => openDrawer(() => Scaffold.of(context).openDrawer()),
+            onPressed: () =>
+                openDrawer(() => Scaffold.of(context).openDrawer()),
           ),
         ),
         title: Row(
@@ -61,7 +64,8 @@ class _Home extends State<Home> {
               style: TextStyle(
                 fontFamily: "Oswald",
                 color: ColorHeader,
-                fontSize: min((MediaQuery.of(context).size.width - 100) / 12, 30),
+                fontSize:
+                    min((MediaQuery.of(context).size.width - 100) / 12, 30),
                 fontWeight: FontWeight.bold,
               ),
             ),

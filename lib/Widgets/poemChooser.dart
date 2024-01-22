@@ -8,7 +8,11 @@ import 'package:cramming_poems/Decoration/colors.dart';
 import 'package:cramming_poems/Decoration/styles.dart';
 
 class PoemChooser extends StatefulWidget {
-  const PoemChooser({super.key, required this.onSelect, required this.onDelete, required this.onAdd});
+  const PoemChooser(
+      {super.key,
+      required this.onSelect,
+      required this.onDelete,
+      required this.onAdd});
 
   final void Function() onSelect;
   final void Function() onDelete;
@@ -19,7 +23,7 @@ class PoemChooser extends StatefulWidget {
 }
 
 class _PoemChooser extends State<PoemChooser> {
-  int _getIndex(int oldIndex){
+  int _getIndex(int oldIndex) {
     return poemList.length - oldIndex - 1;
   }
 
@@ -28,7 +32,11 @@ class _PoemChooser extends State<PoemChooser> {
     return Drawer(
       child: Column(
         children: [
-          Text("Выберите стих", style: Theme.of(context).textTheme.titleLarge, textAlign: TextAlign.center,),
+          Text(
+            "Выберите стих",
+            style: Theme.of(context).textTheme.titleLarge,
+            textAlign: TextAlign.center,
+          ),
           Expanded(
             child: Container(
               color: ColorBackground,
@@ -36,15 +44,18 @@ class _PoemChooser extends State<PoemChooser> {
                   padding: const EdgeInsets.only(top: 5),
                   itemCount: poemList.length,
                   itemBuilder: (BuildContext context, int index) {
-                    index = _getIndex(index);  // делаем вывод списка в обратном порядке
+                    index = _getIndex(
+                        index); // делаем вывод списка в обратном порядке
                     return Card(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
                             child: ListTile(
-                              title: Text(poemList[index].poem.title, textAlign: TextAlign.center),
-                              titleTextStyle: Theme.of(context).textTheme.titleSmall,
+                              title: Text(poemList[index].poem.title,
+                                  textAlign: TextAlign.center),
+                              titleTextStyle:
+                                  Theme.of(context).textTheme.titleSmall,
                               selected: index == poemList.selectedPoemIndex,
                               onTap: () {
                                 setState(() {
@@ -62,7 +73,8 @@ class _PoemChooser extends State<PoemChooser> {
                               await confirmationBox(
                                   context: context,
                                   title: 'Удалить стихотворение?',
-                                  text: "Стихотворение \"${poemList[index].poem.title}\" будет удалено.",
+                                  text:
+                                      "Стихотворение \"${poemList[index].poem.title}\" будет удалено.",
                                   textOK: 'Удалить',
                                   textOFF: 'Отмена',
                                   functionOK: () {

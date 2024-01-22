@@ -12,16 +12,14 @@ Color ColorMain5 = Color.fromARGB(255, 220, 0, 0);
 Color ColorMain6 = Color.fromARGB(255, 0, 0, 0);
 // все это надо когда начнём переделывать дизайн.
 
-Color ColorBackground = ColorMain2;             // задний фон приложения
-Color ColorFont = ColorMain6;                   // шрифта
-Color ColorHeader = ColorMain1;                 // зоголовки
-Color ColorPrimary = ColorMain1;                // основной текс для ColorScheme.fromSeed()
-
+Color ColorBackground = ColorMain2; // задний фон приложения
+Color ColorFont = ColorMain6; // шрифта
+Color ColorHeader = ColorMain1; // зоголовки
+Color ColorPrimary = ColorMain1; // основной текс для ColorScheme.fromSeed()
 
 // цвета для кнопок
-Color ColorButtonBackground = ColorMain3;       // задний фон
-Color ColorButtonHover = ColorMain2;            // при наведении мыши
-Color ColorButtonForeground = ColorMain1;       // сама иконка или текс
-Color ColorButtonPressedOK = ColorMain4;        // при нажатии на кнопку "да"
-Color ColorButtonPressedOFF = ColorMain5;       // при нажатии на кнопку "нет"
-
+Color ColorButtonBackground = ColorMain3; // задний фон
+Color ColorButtonHover = ColorMain2; // при наведении мыши
+Color ColorButtonForeground = ColorMain1; // сама иконка или текс
+Color ColorButtonPressedOK = ColorMain4; // при нажатии на кнопку "да"
+Color ColorButtonPressedOFF = ColorMain5; // при нажатии на кнопку "нет"
