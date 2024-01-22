@@ -73,8 +73,8 @@ android {
             applicationVariants.all { variant ->
                 variant.outputs.all {
                     def appName = "cramming_poems"
-                    def newName = "${appName}_${defaultConfig.versionName}.apk"
-                    outputFileName = newName
+                    outputFileName = "${appName}_${defaultConfig.versionName}+" +
+                            "${defaultConfig.versionCode}.apk"
                 }
             }
         }
