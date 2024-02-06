@@ -28,8 +28,7 @@ class _Home extends State<Home> {
         showCloseIcon: true,
         duration: Duration(milliseconds: 500),
         dismissDirection: DismissDirection.none,
-        content: Text("Сначало сохраните стихотворение",
-            textAlign: TextAlign.center),
+        content: Text("Сначала сохраните стихотворение", textAlign: TextAlign.center),
       ));
     }
   }
@@ -43,8 +42,7 @@ class _Home extends State<Home> {
           Builder(
             builder: (context) => IconButton(
               icon: const Icon(Icons.visibility),
-              onPressed: () =>
-                  openDrawer(() => Scaffold.of(context).openEndDrawer()),
+              onPressed: () => openDrawer(() => Scaffold.of(context).openEndDrawer()),
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             ),
           ),
@@ -52,42 +50,38 @@ class _Home extends State<Home> {
         leading: Builder(
           builder: (context) => IconButton(
             icon: const Icon(Icons.list),
-            onPressed: () =>
-                openDrawer(() => Scaffold.of(context).openDrawer()),
+            onPressed: () => openDrawer(() => Scaffold.of(context).openDrawer()),
           ),
         ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Запоминаем стихотворение",
-              style: TextStyle(
-                fontFamily: "Oswald",
-                color: ColorHeader,
-                fontSize:
-                    min((MediaQuery.of(context).size.width - 100) / 12, 30),
-                fontWeight: FontWeight.bold,
-              ),
+        centerTitle: true,
+        title: //Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            FittedBox(
+          fit: BoxFit.fitWidth,
+          child: Text(
+            "Запоминаем стихотворение",
+            style: TextStyle(
+              fontFamily: "Oswald",
+              color: ColorHeader,
+              // fontSize: min((MediaQuery.of(context).size.width - 100) / 12, 30),
+              fontWeight: FontWeight.bold,
             ),
-          ],
+          ),
         ),
+        //],
+        //),
       ),
 
-      drawer: Container(
-        margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
-        child: PoemChooser(
-          onSelect: redraw,
-          onDelete: redraw,
-          onAdd: () {
-            editingModeController.enableEditingMode();
-            redraw();
-          },
-        ),
+      drawer: PoemChooser(
+        onSelect: redraw,
+        onDelete: redraw,
+        onAdd: () {
+          editingModeController.enableEditingMode();
+          redraw();
+        },
       ),
-      endDrawer: Container(
-        margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
-        child: DisplayTypeChooser(onChange: redraw),
-      ),
+      endDrawer: DisplayTypeChooser(onChange: redraw),
 
       body: HomePageView(), // не добавлять const а то всё перестаёт обновляться
     );

@@ -32,10 +32,16 @@ class _PoemChooser extends State<PoemChooser> {
     return Drawer(
       child: Column(
         children: [
-          Text(
-            "Выберите стих",
-            style: Theme.of(context).textTheme.titleLarge,
-            textAlign: TextAlign.center,
+          Container(
+            padding: const EdgeInsets.fromLTRB(10, 25, 10, 10),
+            child: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(
+                "Выберите стихотворение",
+                style: Theme.of(context).textTheme.titleLarge,
+                textAlign: TextAlign.center,
+              ),
+            ),
           ),
           Expanded(
             child: Container(

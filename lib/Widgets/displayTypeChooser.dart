@@ -20,14 +20,21 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
     return Drawer(
       child: Column(
         children: [
-          Text("Настройте отображение",
-              style: Theme.of(context).textTheme.titleLarge,
-              textAlign: TextAlign.center),
+          Container(
+            padding: const EdgeInsets.fromLTRB(10, 25, 10, 10),
+            child: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(
+                "Настройте отображение",
+                style: Theme.of(context).textTheme.titleLarge,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                width: 150,
+              Expanded(
                 child: DropdownButtonFormField<String>(
                   decoration: const InputDecoration(
                     filled: true,
@@ -35,6 +42,8 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
                     labelText: "Заполнитель",
                   ),
                   style: Theme.of(context).textTheme.bodyMedium,
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
                   dropdownColor: ColorButtonBackground,
                   value: HandlerPoemsDisplayTypes.hidden,
                   onChanged: (String? newValue) {
@@ -76,30 +85,18 @@ class _DisplayTypeChooser extends State<DisplayTypeChooser> {
                         children: [
                           Expanded(
                             child: ListTile(
-                              title: Text(
-                                  HandlerPoemsDisplayTypes
-                                      .getNamePoemDisplayType(
-                                          PoemDisplayType.values[index]),
-                                  textAlign: TextAlign.center),
-                              titleTextStyle:
-                                  Theme.of(context).textTheme.titleSmall,
-                              selected: index ==
-                                  poemList.selectedPoemDisplayType.index,
+                              title: Text(HandlerPoemsDisplayTypes.getNamePoemDisplayType(PoemDisplayType.values[index]), textAlign: TextAlign.center),
+                              titleTextStyle: Theme.of(context).textTheme.titleSmall,
+                              selected: index == poemList.selectedPoemDisplayType.index,
                               onTap: () {
                                 setState(() {
-                                  poemList.selectedPoemDisplayType =
-                                      PoemDisplayType.values[index];
+                                  poemList.selectedPoemDisplayType = PoemDisplayType.values[index];
                                 });
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                   showCloseIcon: true,
                                   duration: Duration(seconds: 1),
                                   dismissDirection: DismissDirection.none,
-                                  content: Text(
-                                      HandlerPoemsDisplayTypes
-                                          .getNamePoemDisplayType(
-                                              poemList.selectedPoemDisplayType),
-                                      textAlign: TextAlign.center),
+                                  content: Text(HandlerPoemsDisplayTypes.getNamePoemDisplayType(poemList.selectedPoemDisplayType), textAlign: TextAlign.center),
                                 ));
                                 widget.onChange();
                                 Navigator.pop(context);

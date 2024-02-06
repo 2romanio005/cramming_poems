@@ -51,7 +51,7 @@ class _HomePageView extends State<HomePageView> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
       child: Row(
         children: [
           Expanded(
