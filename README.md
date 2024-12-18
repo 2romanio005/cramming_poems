@@ -1,5 +1,7 @@
 # Добро пожаловать в Cramming Poems
 
+[<img src="README_photo/in_work.jpg" width="303"/>](README_photo/in_work.jpg)
+
 ## Инструкция по установке Cramming Poems
 
 ### Нажимайте на то, что обведено ${\color{red}красным}$.
